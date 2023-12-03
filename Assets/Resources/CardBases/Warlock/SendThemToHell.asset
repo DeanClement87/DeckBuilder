@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a8e12d2b5724644a2d4bc155bcf84f, type: 3}
+  m_Name: SendThemToHell
+  m_EditorClassIdentifier: 
+  Id: 0
+  CardName: Send Them To Hell
+  Description: 4 Damage, if this kills then deal 4 Damage to others.
+  Image: CardArt/send_them_to_hell
+  ManaCost: 1
+  Actions:
+  - {fileID: 11400000, guid: 62e17cd83ef71fb41933f09a25d9c6b9, type: 2}
+  - {fileID: 11400000, guid: 410d3ec530c6c98468f0f82f24c51258, type: 2}
+  - {fileID: 11400000, guid: 7c74cd7753d5a8a439691d0e3de2f174, type: 2}
+  CardConditionEnums: 01000000

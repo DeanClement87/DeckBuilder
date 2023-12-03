@@ -1,0 +1,19 @@
+public enum ActionEnum
+{
+    Attack,
+    Distract,
+    AddBlock,
+    AddThorns,
+    AttackByThornsStack,
+    GiveManaToAllies,
+    GiveCardDrawToAllies,
+    Mark,
+    AttackPlusFear,
+    AddTownMood,
+    BeAfraid,
+    CleaveAttack,
+    Backstab,
+    Jump,
+    SkipIfNoMonsterInLane,
+    SkipIfNoKill
+}
