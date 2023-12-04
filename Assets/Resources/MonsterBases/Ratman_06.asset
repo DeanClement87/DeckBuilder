@@ -16,5 +16,5 @@ MonoBehaviour:
   MonsterName: Ratman Hexer
   Description: 6
   Image: MonsterArt/Ratman_06
-  Health: 60
-  Attack: 20
+  Health: 80
+  Attack: 15

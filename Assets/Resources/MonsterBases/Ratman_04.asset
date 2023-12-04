@@ -16,5 +16,5 @@ MonoBehaviour:
   MonsterName: Ratman Spear
   Description: 4
   Image: MonsterArt/Ratman_04
-  Health: 30
+  Health: 35
   Attack: 10

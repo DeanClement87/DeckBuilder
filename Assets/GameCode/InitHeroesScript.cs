@@ -160,4 +160,44 @@ public class InitHeroesScript
         //draw pile starts as full deck.
         hero.DrawPile.AddRange(hero.Deck);
     }
+
+    public static void InitHeroWizardDeck(HeroModel hero)
+    {
+        hero.HeroArt = "HeroArt/Wizard1";
+        hero.HeroBoardArt = "HeroArt/Wizard1Board";
+        hero.HeroArtAvatar = "HeroArt/Wizard1Avatar";
+        hero.CardTemplateArt = "CardAssets/WizardCard";
+        hero.Health = 13;
+
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/Teleport"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/IceCage"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/Fireball"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/ManaInABottle"));
+
+
+        var card1 = new CardModel(hero.PossibleCards[0]);
+        var card2 = new CardModel(hero.PossibleCards[0]);
+        var card3 = new CardModel(hero.PossibleCards[0]);
+        var card4 = new CardModel(hero.PossibleCards[0]);
+        var card5 = new CardModel(hero.PossibleCards[1]);
+        var card6 = new CardModel(hero.PossibleCards[1]);
+        var card7 = new CardModel(hero.PossibleCards[1]);
+        var card8 = new CardModel(hero.PossibleCards[1]);
+        var card9 = new CardModel(hero.PossibleCards[2]);
+        var card10 = new CardModel(hero.PossibleCards[3]);
+
+        hero.Deck.Add(card1);
+        hero.Deck.Add(card2);
+        hero.Deck.Add(card3);
+        hero.Deck.Add(card4);
+        hero.Deck.Add(card5);
+        hero.Deck.Add(card6);
+        hero.Deck.Add(card7);
+        hero.Deck.Add(card8);
+        hero.Deck.Add(card9);
+        hero.Deck.Add(card10);
+
+        //draw pile starts as full deck.
+        hero.DrawPile.AddRange(hero.Deck);
+    }
 }

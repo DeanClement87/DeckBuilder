@@ -39,6 +39,7 @@ public class HeroTargetScript : MonoBehaviour, IPointerClickHandler
 
         if (gameManager.gameState == GameManager.GameState.MonsterTurn)
         {
+            //DISTRACT
             var monsterAttack = monsterManager.monsterTurn.monster.BaseMonster.Attack - monsterManager.monsterTurn.monster.Distract;
             if (monsterAttack <= 0) monsterAttack = 0;
 

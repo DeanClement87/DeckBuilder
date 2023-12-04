@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class MonsterModel
 {
-    public Guid Id { get; set; }
     public int CurrentHealth { get; set; }
+
+    //DEBUFFS
     public int Distract { get; set; }
     public int Marked { get; set; }
+    public bool Stunned { get; set; }
     public BaseMonsterModel BaseMonster { get; set; }
 
     public MonsterModel(BaseMonsterModel baseMonster)
     {
-        Id = Guid.NewGuid();
         BaseMonster = baseMonster;
         CurrentHealth = baseMonster.Health;
     }

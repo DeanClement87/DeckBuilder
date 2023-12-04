@@ -16,6 +16,8 @@ public static class ActionExecuteFactory
                 return new JumpActionExecute();
             case ActionEnum.Mark:
                 return new MarkActionExecute();
+            case ActionEnum.Stun:
+                return new StunActionExecute();
             case ActionEnum.AddBlock:
                 return new AddBlockActionExecute();
             case ActionEnum.AddThorns:
@@ -27,6 +29,8 @@ public static class ActionExecuteFactory
             case ActionEnum.AttackPlusFear:
                 return new AttackPlusFearActionExecute();
             case ActionEnum.GiveManaToAllies:
+                return new GiveManaToAlliesActionExecute("not_to_self");
+            case ActionEnum.GiveManaToLane:
                 return new GiveManaToAlliesActionExecute();
             case ActionEnum.GiveCardDrawToAllies:
                 return new GiveCardDrawToAlliesActionExecute();

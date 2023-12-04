@@ -16,5 +16,5 @@ MonoBehaviour:
   MonsterName: Ratman Rogue
   Description: 3
   Image: MonsterArt/Ratman_03
-  Health: 15
+  Health: 20
   Attack: 8

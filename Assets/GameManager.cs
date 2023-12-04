@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
                 //init the hero decks with cards etc
                 InitHeroesScript.InitHeroKnightDeck(Heroes[0]);
                 InitHeroesScript.InitHeroRangerDeck(Heroes[1]);
-                InitHeroesScript.InitHeroWarlockDeck(Heroes[2]);
+                InitHeroesScript.InitHeroWizardDeck(Heroes[2]);
                 InitHeroesScript.InitHeroRogueDeck(Heroes[3]);
 
                 HideGameObjectOffScreen("EndHeroTurn", true);

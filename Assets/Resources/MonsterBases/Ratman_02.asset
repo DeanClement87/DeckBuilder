@@ -16,5 +16,5 @@ MonoBehaviour:
   MonsterName: Ratman Archer
   Description: 2
   Image: MonsterArt/Ratman_02
-  Health: 15
+  Health: 20
   Attack: 5

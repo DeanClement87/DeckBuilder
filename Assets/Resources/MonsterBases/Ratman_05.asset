@@ -16,5 +16,5 @@ MonoBehaviour:
   MonsterName: Ratman Soldier
   Description: 5
   Image: MonsterArt/Ratman_05
-  Health: 40
+  Health: 45
   Attack: 10

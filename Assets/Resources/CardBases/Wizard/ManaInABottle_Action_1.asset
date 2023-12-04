@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb2151c1f7345d4886a941aa92a7ed1, type: 3}
-  m_Name: Ratman_01
+  m_Script: {fileID: 11500000, guid: 92df3301dfd627545b5be81728b9b1a0, type: 3}
+  m_Name: ManaInABottle_Action_1
   m_EditorClassIdentifier: 
-  Id: 1
-  MonsterName: Ratman Grunt
-  Description: 1
-  Image: MonsterArt/Ratman_01
-  Health: 12
-  Attack: 2
+  Action: 16
+  Target: 7
+  Value: 1
+  ActionDataText: Give 1 Mana.

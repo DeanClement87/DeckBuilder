@@ -15,5 +15,7 @@ public enum ActionEnum
     Backstab,
     Jump,
     SkipIfNoMonsterInLane,
-    SkipIfNoKill
+    SkipIfNoKill,
+    GiveManaToLane,
+    Stun
 }
