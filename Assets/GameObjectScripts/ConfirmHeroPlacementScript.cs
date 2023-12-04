@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ConfirmHeroPlacementScript : MonoBehaviour
+public class ConfirmHeroPlacementScript : MonoBehaviour, IPointerDownHandler
 {
     private GameManager gameManager;
 
@@ -13,8 +14,7 @@ public class ConfirmHeroPlacementScript : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
         //count all the heroes in all the lanes
         var heroesInLanesCount = 0;
@@ -31,6 +31,5 @@ public class ConfirmHeroPlacementScript : MonoBehaviour
         gameManager.HideGameObjectOffScreen("HeroTray", true);
         gameManager.HideGameObjectOffScreen("ConfirmHeroPlacement", true);
         gameManager.ChangeGameState(GameManager.GameState.MonsterSpawn);
-
     }
 }
