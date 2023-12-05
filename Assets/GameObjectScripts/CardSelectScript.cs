@@ -1,9 +1,10 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardSelectScript : MonoBehaviour
+public class CardSelectScript : MonoBehaviour, IPointerClickHandler
 {
     private GameManager gameManager;
     private CardModel cardModel;
@@ -37,7 +38,7 @@ public class CardSelectScript : MonoBehaviour
         cardTemplate.sprite = cardTemplateSprite;
     }
 
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         //add this card to hero
         gameManager.ActiveHero.Deck.Add(cardModel);
@@ -52,8 +53,6 @@ public class CardSelectScript : MonoBehaviour
 
             CardScript c = newCard.GetComponent<CardScript>();
             c.SetCardData(cardModel, gameManager.ActiveHero);
-
-            
         }
         else
         {

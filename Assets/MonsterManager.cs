@@ -78,10 +78,11 @@ public class MonsterManager : MonoBehaviour
 
         monsterTurn = monsterTurnList[monsterCounter];
 
-        //IF MONSTER STUNNED SKIP
-        if (monsterTurn.monster.Stunned)
+        //IF MONSTER STUNNED OR FROZEN SKIP
+        if (monsterTurn.monster.Stunned || monsterTurn.monster.Frozen)
         {
             monsterTurn.monster.Stunned = false;
+            monsterTurn.monster.Frozen = false;
             monsterCounter += 1;
             MonsterExecutor();
         }

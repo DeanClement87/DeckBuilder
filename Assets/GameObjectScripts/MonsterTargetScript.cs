@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MonsterTargetScript : MonoBehaviour
+public class MonsterTargetScript : MonoBehaviour, IPointerClickHandler
 {
     private GameManager gameManager;
     private ActionManager actionManager;
@@ -12,6 +13,7 @@ public class MonsterTargetScript : MonoBehaviour
     private MonsterScript ms;
     private Image monsterImage;
     private bool canBeTargeted;
+
     void Awake()
     {
         gameManager = GameManager.Instance;
@@ -21,7 +23,7 @@ public class MonsterTargetScript : MonoBehaviour
         monsterImage = GetComponent<Image>();
     }
 
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (gameManager.gameState != GameManager.GameState.CardAction) return;
 

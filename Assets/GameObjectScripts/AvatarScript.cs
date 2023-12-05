@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class AvatarScript : MonoBehaviour
+public class AvatarScript : MonoBehaviour, IPointerClickHandler
 {
     private GameManager gameManager;
     public int HeroSelectOrder;
@@ -35,7 +36,7 @@ public class AvatarScript : MonoBehaviour
         return heroModel;
     }
 
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (gameManager.gameState != GameManager.GameState.HeroTurn) return;
 
@@ -69,4 +70,6 @@ public class AvatarScript : MonoBehaviour
         if (heroModel.Mana > 3 ) mana4.sprite = manaGemFull;
         if (heroModel.Mana > 4 ) mana5.sprite = manaGemFull;
     }
+
+
 }
