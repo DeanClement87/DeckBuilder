@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject EndHeroTurn { get; set; }
     
     //ENTITIES
+    public List<HeroEnum> HeroesSelectionFromMainScreen { get; set; } = new List<HeroEnum>();
     public List<HeroModel> Heroes { get; set; } = new List<HeroModel>();
     public List<MonsterModel> Monsters { get; set; } = new List<MonsterModel>();
     public TownModel Town { get; set; } = new TownModel();
@@ -60,8 +61,6 @@ public class GameManager : MonoBehaviour
                 {
                     GameObject singletonObject = new GameObject("GameManager");
                     _instance = singletonObject.AddComponent<GameManager>();
-
-                    _instance.ChangeGameState(GameState.GameStart);
                 }
             }
 
@@ -111,16 +110,10 @@ public class GameManager : MonoBehaviour
                 }
 
                 //add 4 heroes
-                Heroes.Add(new HeroModel());
-                Heroes.Add(new HeroModel());
-                Heroes.Add(new HeroModel());
-                Heroes.Add(new HeroModel());
-
-                //init the hero decks with cards etc
-                InitHeroesScript.InitHeroKnightDeck(Heroes[0]);
-                InitHeroesScript.InitHeroRangerDeck(Heroes[1]);
-                InitHeroesScript.InitHeroWizardDeck(Heroes[2]);
-                InitHeroesScript.InitHeroRogueDeck(Heroes[3]);
+                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[0], 1));
+                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[1], 2));
+                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[2], 3));
+                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[3], 4));
 
                 ConfirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");
                 ConfirmHeroPlacement.SetActive(false);
@@ -266,6 +259,35 @@ public class GameManager : MonoBehaviour
             
                 break;
         }
+    }
+
+    public HeroModel CreateHero(HeroEnum heroEnum, int avatarNumber)
+    {
+        var newHero = new HeroModel();
+        switch (heroEnum)
+        {
+            case HeroEnum.Knight:
+                InitHeroesScript.InitHeroKnightDeck(newHero);
+                break;
+            case HeroEnum.Ranger:
+                InitHeroesScript.InitHeroRangerDeck(newHero);
+                break;
+            case HeroEnum.Warlock:
+                InitHeroesScript.InitHeroWarlockDeck(newHero);
+                break;
+            case HeroEnum.Rogue:
+                InitHeroesScript.InitHeroRogueDeck(newHero);
+                break;
+            case HeroEnum.Wizard:
+                InitHeroesScript.InitHeroWizardDeck(newHero);
+                break;
+        }
+
+        var avatar = GameObject.Find($"HeroSelectImage{avatarNumber}");
+        var avatarScript = avatar.GetComponent<AvatarScript>();
+        avatarScript.HeroModel = newHero;
+
+        return newHero;
     }
 
     public void MonsterOverflow(MonsterModel monsterModel)
@@ -478,7 +500,7 @@ public class GameManager : MonoBehaviour
             var avatar = GameObject.Find($"Avatar{i}");
             var avatarScript = avatar.GetComponentInChildren<AvatarScript>();
             var avatarImage = avatar.GetComponent<Image>();
-            if (avatarScript.GetHeroModel() == ActiveHero)
+            if (avatarScript.HeroModel == ActiveHero)
                 avatarImage.sprite = blue;
             else
                 avatarImage.sprite = black;

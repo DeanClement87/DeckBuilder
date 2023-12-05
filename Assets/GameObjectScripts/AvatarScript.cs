@@ -19,42 +19,45 @@ public class AvatarScript : MonoBehaviour, IPointerClickHandler
     public Image mana4;
     public Image mana5;
 
-    private HeroModel heroModel;
+    private HeroModel _heroModel;
+    public HeroModel HeroModel
+    {
+        get { return _heroModel; }
+        set 
+        { 
+            _heroModel = value;
+
+            Sprite heroSprite = Resources.Load<Sprite>(HeroModel.HeroArtAvatar);
+            heroImage.sprite = heroSprite;
+        }
+    }
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-
-        heroModel = gameManager.Heroes[HeroSelectOrder - 1];
-
-        Sprite heroSprite = Resources.Load<Sprite>(heroModel.HeroArtAvatar);
-        heroImage.sprite = heroSprite;
-    }
-
-    public HeroModel GetHeroModel()
-    {
-        return heroModel;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (gameManager.gameState != GameManager.GameState.HeroTurn) return;
 
-        if (heroModel.Dead) return;
+        if (HeroModel.Dead) return;
 
-        gameManager.SetActiveHero(heroModel);
+        gameManager.SetActiveHero(HeroModel);
     }
 
     private void Update()
     {
-        if (heroModel.Dead)
+        if (HeroModel == null) return;
+
+        if (HeroModel.Dead)
         {
             var red = Resources.Load<Sprite>("AvatarAssets/RedAvatarBackground");
             var avatarImage = transform.parent.GetComponent<Image>();
             avatarImage.sprite = red;
         }
 
-        health.text = heroModel.Health.ToString();
+        health.text = HeroModel.Health.ToString();
         var manaGemFull = Resources.Load<Sprite>("AvatarAssets/ManaGemFull");
         var manaGemEmpty = Resources.Load<Sprite>("AvatarAssets/ManaGemEmpty");
 
@@ -64,11 +67,11 @@ public class AvatarScript : MonoBehaviour, IPointerClickHandler
         mana4.sprite = manaGemEmpty;
         mana5.sprite = manaGemEmpty;
 
-        if (heroModel.Mana > 0 ) mana1.sprite = manaGemFull;
-        if (heroModel.Mana > 1 ) mana2.sprite = manaGemFull;
-        if (heroModel.Mana > 2 ) mana3.sprite = manaGemFull;
-        if (heroModel.Mana > 3 ) mana4.sprite = manaGemFull;
-        if (heroModel.Mana > 4 ) mana5.sprite = manaGemFull;
+        if (HeroModel.Mana > 0 ) mana1.sprite = manaGemFull;
+        if (HeroModel.Mana > 1 ) mana2.sprite = manaGemFull;
+        if (HeroModel.Mana > 2 ) mana3.sprite = manaGemFull;
+        if (HeroModel.Mana > 3 ) mana4.sprite = manaGemFull;
+        if (HeroModel.Mana > 4 ) mana5.sprite = manaGemFull;
     }
 
 
