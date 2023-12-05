@@ -6,12 +6,13 @@ using UnityEngine;
 public class MonsterModel
 {
     public int CurrentHealth { get; set; }
+    public BaseMonsterModel BaseMonster { get; set; }
 
     //DEBUFFS
     public int Distract { get; set; }
     public int Marked { get; set; }
     public bool Stunned { get; set; }
-    public BaseMonsterModel BaseMonster { get; set; }
+    public bool Frozen { get; set; }
 
     public MonsterModel(BaseMonsterModel baseMonster)
     {

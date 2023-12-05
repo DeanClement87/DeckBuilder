@@ -17,5 +17,6 @@ public enum ActionEnum
     SkipIfNoMonsterInLane,
     SkipIfNoKill,
     GiveManaToLane,
-    Stun
+    Stun,
+    Frozen
 }

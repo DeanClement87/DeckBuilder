@@ -16,6 +16,8 @@ public static class ActionExecuteFactory
                 return new JumpActionExecute();
             case ActionEnum.Mark:
                 return new MarkActionExecute();
+            case ActionEnum.Frozen:
+                return new FrozenActionExecute();
             case ActionEnum.Stun:
                 return new StunActionExecute();
             case ActionEnum.AddBlock:

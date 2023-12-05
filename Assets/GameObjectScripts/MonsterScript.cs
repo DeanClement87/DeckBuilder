@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using TMPro;
@@ -10,60 +12,141 @@ using UnityEngine.UI;
 public class MonsterScript : MonoBehaviour
 {
     private GameManager gameManager;
-
-    public MonsterModel MonsterModel { get; set; }
+    public MonsterModel monsterModel;
     public TextMeshProUGUI monsterHealth;
     public TextMeshProUGUI monsterAttack;
 
     private Image monsterImage;
 
     private List<GameObject> debuffs = new List<GameObject>();
-    private bool hasBeenMarked = false;
+    private Dictionary<DebuffEnum, bool> debuffDict = new Dictionary<DebuffEnum, bool>();
 
     void Awake()
     {
         gameManager = GameManager.Instance;
         monsterImage = GetComponent<Image>();
+
+        debuffDict.Add(DebuffEnum.Marked, false);
+        debuffDict.Add(DebuffEnum.Frozen, false);
     }
 
     public void SetMonsterData(MonsterModel monster)
     {
-        MonsterModel = monster;
+        monsterModel = monster;
 
-        Sprite monsterSprite = Resources.Load<Sprite>(MonsterModel.BaseMonster.Image);
+        Sprite monsterSprite = Resources.Load<Sprite>(monsterModel.BaseMonster.Image);
         monsterImage.sprite = monsterSprite;
+    }
+
+    public void ResetDebuffs()
+    {
+        monsterModel.Distract = 0;
+        monsterModel.Marked = 0;
+        monsterModel.Stunned = false;
+        monsterModel.Frozen = false;
+
+        debuffDict[DebuffEnum.Marked] = false;
+        debuffDict[DebuffEnum.Frozen] = false;
+
+        foreach (var debuff in debuffs)
+            Destroy(debuff);
+
+        debuffs = new List<GameObject>();
+    }
+
+    public void AddDebuff(string debuffName)
+    {
+        var debuffPrefab = Resources.Load<GameObject>("Debuff");
+        var debuffObject = GameObject.Instantiate(debuffPrefab, gameObject.transform.position, Quaternion.identity);
+        debuffObject.transform.SetParent(gameObject.transform, true);
+
+        var debuff = Resources.Load<DebuffModel>($"Debuffs/{debuffName}");
+
+        var debuffScript = debuffObject.GetComponent<DebuffScript>();
+        debuffScript.SetDebuffData(debuff);
+
+        debuffs.Add(debuffObject);
+
+        OrganiseDebuffs();
+    }
+    public void OrganiseDebuffs()
+    {
+        switch (debuffs.Count())
+        {
+
+            case 1:
+                var pos1 = gameObject.transform.position;
+                pos1.y += 90;
+                debuffs[0].transform.position = pos1;
+                break;
+            case 2:
+                var pos2 = gameObject.transform.position;
+                pos2.y += 90;
+                pos2.x -= 25;
+                debuffs[0].transform.position = pos2;
+
+                var pos3 = gameObject.transform.position;
+                pos3.y += 90;
+                pos3.x += 25;
+                debuffs[1].transform.position = pos3;
+                break;
+
+            case 3:
+                var pos4 = gameObject.transform.position;
+                pos4.y += 90;
+                pos4.x -= 50;
+                debuffs[0].transform.position = pos4;
+
+                var pos5 = gameObject.transform.position;
+                pos5.y += 90;
+                debuffs[1].transform.position = pos5;
+
+                var pos6 = gameObject.transform.position;
+                pos6.y += 90;
+                pos6.x += 50;
+                debuffs[2].transform.position = pos6;
+                break;
+
+            case 4:
+                // Four debuffs
+                // will need to resize them at this point to make them fit.
+                Console.WriteLine("Four debuffs");
+                break;
+        }
     }
 
     public void Update()
     {
-        var attack = MonsterModel.BaseMonster.Attack - MonsterModel.Distract;
+        var attack = monsterModel.BaseMonster.Attack - monsterModel.Distract;
         if (attack < 0) attack = 0;
 
-
-        monsterHealth.text = MonsterModel.CurrentHealth.ToString();
+        monsterHealth.text = monsterModel.CurrentHealth.ToString();
         monsterAttack.text = attack.ToString();
 
-        if (MonsterModel.Marked > 0 && hasBeenMarked == false)
+        //MARKED
+        if (monsterModel.Marked > 0)
         {
-            hasBeenMarked = true;
-            var debuffPrefab = Resources.Load<GameObject>("Debuff");
-            var debuffObject = GameObject.Instantiate(debuffPrefab, gameObject.transform.position, Quaternion.identity);
-            debuffObject.transform.SetParent(gameObject.transform, true);
-
-            var debuffPosition = debuffObject.transform.position;
-            debuffPosition.y += 90;
-            debuffObject.transform.position = debuffPosition;
-
-            //MonsterScript ms = monsterObject.GetComponent<MonsterScript>();
-            //ms.SetMonsterData(Monsters[randomIndex]);
-
-            //AddMonsterToLane(monsterObject, Monsters[randomIndex], lane.laneNumber);
+            if (debuffDict[DebuffEnum.Marked] == false)
+            {
+                AddDebuff("Marked");
+                debuffDict[DebuffEnum.Marked] = true;
+            }
         }
 
-
-        if (MonsterModel.CurrentHealth <= 0)
+        //FROZEN
+        if (monsterModel.Frozen)
         {
-            gameManager.RemoveMonsterFromGame(gameObject, MonsterModel);
+            if (debuffDict[DebuffEnum.Frozen] == false)
+            {
+                AddDebuff("Frozen");
+                debuffDict[DebuffEnum.Frozen] = true;
+            }
+        }
+
+        //DEAD
+        if (monsterModel.CurrentHealth <= 0)
+        {
+            gameManager.RemoveMonsterFromGame(gameObject, monsterModel);
         }
     }
 }

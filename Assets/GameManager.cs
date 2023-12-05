@@ -233,11 +233,10 @@ public class GameManager : MonoBehaviour
                 //remove all monster debuffs
                 foreach (var monsterLane in MonsterLanes)
                 {
-                    foreach (var monster in monsterLane.MonsterModels)
+                    foreach (var monsterObject in monsterLane.ObjectsInLane)
                     {
-                        monster.Distract = 0;
-                        monster.Marked = 0;
-                        monster.Marked = 0;
+                        var ms = monsterObject.GetComponent<MonsterScript>();
+                        ms.ResetDebuffs();
                     }
                 }
 

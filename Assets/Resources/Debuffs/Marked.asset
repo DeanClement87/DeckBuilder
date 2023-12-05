@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92df3301dfd627545b5be81728b9b1a0, type: 3}
-  m_Name: IceCage_Action_1
+  m_Script: {fileID: 11500000, guid: 8f1832b41f068b54496ebe4f84cd3609, type: 3}
+  m_Name: Marked
   m_EditorClassIdentifier: 
-  Action: 18
-  Target: 4
-  Value: 0
-  ActionDataText: Freeze
+  ImagePath: Debuffs/Marked_Image
+  Name: Marked
+  Description: Monster takes 2 extra damage per attack.

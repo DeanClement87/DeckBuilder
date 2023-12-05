@@ -27,7 +27,7 @@ public class MonsterTargetScript : MonoBehaviour
 
         if (!canBeTargeted) return;
 
-        gameManager.TargetedMonster = ms.MonsterModel;
+        gameManager.TargetedMonster = ms.monsterModel;
 
         var actionExecute = ActionExecuteFactory.GetActionExecute(actionManager.ActiveAction.Action);
         actionExecute.Execute();
@@ -49,7 +49,7 @@ public class MonsterTargetScript : MonoBehaviour
                 monsterImage.color = Color.white;
                 return;
             case ActionTargetEnum.MonsterThisLane:
-                if (heroLane.OppositeLane.MonsterModels.Contains(ms.MonsterModel))
+                if (heroLane.OppositeLane.MonsterModels.Contains(ms.monsterModel))
                 {
                     canBeTargeted = true;
                     monsterImage.color = Color.white;
@@ -58,7 +58,7 @@ public class MonsterTargetScript : MonoBehaviour
                 break;
             case ActionTargetEnum.MonsterOutsideLane:
                 //if the monster is in the opposite lane to our hero, then do nothing
-                if (heroLane.OppositeLane.MonsterModels.Contains(ms.MonsterModel)) break;
+                if (heroLane.OppositeLane.MonsterModels.Contains(ms.monsterModel)) break;
 
                 canBeTargeted = true;
                 monsterImage.color = Color.white;
