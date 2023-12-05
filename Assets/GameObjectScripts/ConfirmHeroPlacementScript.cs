@@ -29,7 +29,8 @@ public class ConfirmHeroPlacementScript : MonoBehaviour, IPointerDownHandler
         }
 
         gameManager.HideGameObjectOffScreen("HeroTray", true);
-        gameManager.HideGameObjectOffScreen("ConfirmHeroPlacement", true);
+        var confirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");
+        confirmHeroPlacement.SetActive(false);
         gameManager.ChangeGameState(GameManager.GameState.MonsterSpawn);
     }
 }

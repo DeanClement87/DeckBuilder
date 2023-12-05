@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     public GameObject MainCanvas { get; set; }
+    public GameObject ConfirmHeroPlacement { get; set; }
+    public GameObject EndHeroTurn { get; set; }
     
     //ENTITIES
     public List<HeroModel> Heroes { get; set; } = new List<HeroModel>();
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"GAMESTATE CHANGE: {this.gameState} -> {gameState}");
         this.gameState = gameState;
-        MainCanvas =  GameObject.Find("MainCanvas");
+        MainCanvas = GameObject.Find("MainCanvas");
 
         //THIS IS TEMPORARY FOR DEBUGGING
         var gameObject = GameObject.Find("GameState");
@@ -120,8 +122,11 @@ public class GameManager : MonoBehaviour
                 InitHeroesScript.InitHeroWizardDeck(Heroes[2]);
                 InitHeroesScript.InitHeroRogueDeck(Heroes[3]);
 
-                HideGameObjectOffScreen("EndHeroTurn", true);
-                HideGameObjectOffScreen("ConfirmHeroPlacement", true);
+                ConfirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");
+                ConfirmHeroPlacement.SetActive(false);
+
+                EndHeroTurn = GameObject.Find("EndHeroTurn");
+                EndHeroTurn.SetActive(false);
 
                 ChangeGameState(GameState.LevelStart);
                 break;
@@ -148,7 +153,7 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.HeroPlacement);
                 break;
             case GameState.HeroPlacement:
-                HideGameObjectOffScreen("ConfirmHeroPlacement", false);
+                ConfirmHeroPlacement.SetActive(true);
 
                 break;
             case GameState.MonsterSpawn:
@@ -187,7 +192,7 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.HeroTurn);
                 break;
             case GameState.HeroTurn:
-                HideGameObjectOffScreen("EndHeroTurn", false);
+                EndHeroTurn.SetActive(true);
 
                 foreach (var hero in Heroes)
                 {

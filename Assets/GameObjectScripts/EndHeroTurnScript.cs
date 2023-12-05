@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class EndHeroTurnScript : MonoBehaviour
+public class EndHeroTurnScript : MonoBehaviour, IPointerClickHandler
 {
     private GameManager gameManager;
 
@@ -11,21 +12,11 @@ public class EndHeroTurnScript : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        var endHeroTurn = GameObject.Find("EndHeroTurn");
+        endHeroTurn.SetActive(false);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.gameObject != gameObject)
-                    return;
-
-                gameManager.HideGameObjectOffScreen("EndHeroTurn", true);
-                gameManager.ChangeGameState(GameManager.GameState.MonsterTurn);
-            }
-        }
+        gameManager.ChangeGameState(GameManager.GameState.MonsterTurn);
     }
 }
