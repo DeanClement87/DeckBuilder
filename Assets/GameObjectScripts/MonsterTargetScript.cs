@@ -30,6 +30,7 @@ public class MonsterTargetScript : MonoBehaviour, IPointerClickHandler
         if (!canBeTargeted) return;
 
         gameManager.TargetedMonster = ms.monsterModel;
+        gameManager.TargetedMonsterObject = gameObject;
 
         var actionExecute = ActionExecuteFactory.GetActionExecute(actionManager.ActiveAction.Action);
         actionExecute.Execute();

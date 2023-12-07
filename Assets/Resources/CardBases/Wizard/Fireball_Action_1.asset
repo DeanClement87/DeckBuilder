@@ -16,3 +16,5 @@ MonoBehaviour:
   Target: 4
   Value: 20
   ActionDataText: 20 Damage
+  Particle: 1
+  ParticleBehavour: 1

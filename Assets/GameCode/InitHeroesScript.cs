@@ -181,8 +181,8 @@ public class InitHeroesScript
         var card4 = new CardModel(hero.PossibleCards[0]);
         var card5 = new CardModel(hero.PossibleCards[1]);
         var card6 = new CardModel(hero.PossibleCards[1]);
-        var card7 = new CardModel(hero.PossibleCards[1]);
-        var card8 = new CardModel(hero.PossibleCards[1]);
+        var card7 = new CardModel(hero.PossibleCards[2]);
+        var card8 = new CardModel(hero.PossibleCards[2]);
         var card9 = new CardModel(hero.PossibleCards[2]);
         var card10 = new CardModel(hero.PossibleCards[3]);
 

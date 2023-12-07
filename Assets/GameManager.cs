@@ -24,10 +24,12 @@ public class GameManager : MonoBehaviour
 
     //THE ACTIVE SELECTIONS
     public HeroModel ActiveHero { get; set; }
+    public GameObject ActiveHeroObject { get; set; }
     public CardModel ActiveCard { get; set; }
 
     //THINGS THAT HAVE BEEN CLICKED
     public MonsterModel TargetedMonster { get; set; }
+    public GameObject TargetedMonsterObject { get; set; }
     public LaneModel TargetedLane { get; set; }
     public HeroModel TargetedHero { get; set; }
 
@@ -109,11 +111,22 @@ public class GameManager : MonoBehaviour
                     MonsterLanes[i].OppositeLane = HeroLanes[i];
                 }
 
-                //add 4 heroes
-                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[0], 1));
-                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[1], 2));
-                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[2], 3));
-                Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[3], 4));
+                if (HeroesSelectionFromMainScreen.Any())
+                {
+                    //add 4 heroes
+                    Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[0], 1));
+                    Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[1], 2));
+                    Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[2], 3));
+                    Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[3], 4));
+                }
+                else
+                {
+                    //add 4 default heroes
+                    Heroes.Add(CreateHero(HeroEnum.Knight, 1));
+                    Heroes.Add(CreateHero(HeroEnum.Ranger, 2));
+                    Heroes.Add(CreateHero(HeroEnum.Wizard, 3));
+                    Heroes.Add(CreateHero(HeroEnum.Rogue, 4));
+                }
 
                 ConfirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");
                 ConfirmHeroPlacement.SetActive(false);
@@ -474,6 +487,18 @@ public class GameManager : MonoBehaviour
 
         if (ActiveHero == heroModel)
             return;
+
+        foreach (var lane in HeroLanes)
+        {
+            foreach (var heroObject in lane.ObjectsInLane)
+            {
+                var hs = heroObject.GetComponent<HeroScript>();
+                if (hs.HeroModel == heroModel)
+                {
+                    ActiveHeroObject = heroObject;
+                }
+            }
+        }
 
         //hide old active heros cards.
         if (ActiveHero != null)

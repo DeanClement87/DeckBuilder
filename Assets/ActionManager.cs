@@ -40,8 +40,11 @@ public class ActionManager : MonoBehaviour
     }
 
     public ActionModel ActiveAction { get; set; }
+
+    public int IncomingDamage { get; set; } = 0;
     public int ActionCounter { get; set; }
     public bool killDuringAction = false;
+
     public void ActionExecutor()
     {
         var gameManager = GameManager.Instance;

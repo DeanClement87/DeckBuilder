@@ -1,5 +1,4 @@
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,6 @@ public static class ActionExecuteHelper
     {
         var gameManager = GameManager.Instance;
         var actionManager = ActionManager.Instance;
-
 
         if (gameManager.TargetedLane != null)
         {
@@ -23,12 +21,21 @@ public static class ActionExecuteHelper
             }
         }
 
+        //apply the damage.
+        if (actionManager.IncomingDamage > 0 && gameManager.TargetedMonster != null)
+        {
+            gameManager.TargetedMonster.CurrentHealth -= actionManager.IncomingDamage;
+            actionManager.IncomingDamage = 0;
+        }
+
+        //check if we killed a monster
         if (gameManager.TargetedMonster?.CurrentHealth <= 0)
             actionManager.killDuringAction = true;
 
         gameManager.TargetedLane = null;
         gameManager.TargetedHero = null;
         gameManager.TargetedMonster = null;
+        gameManager.TargetedMonsterObject = null;
 
         actionManager.ActionCounter++;
         actionManager.ActionExecutor();
