@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92df3301dfd627545b5be81728b9b1a0, type: 3}
   m_Name: StrikeBack_Action_3
   m_EditorClassIdentifier: 
-  Action: 4
-  Target: 4
+  Action: 19
+  Target: 9
   Value: 0
-  ActionDataText: Attack equal to your retaliate
+  StringValue: addThorns
+  ActionDataText: 
+  Particle: 0
+  ParticleBehavour: 0

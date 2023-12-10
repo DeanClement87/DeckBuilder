@@ -44,6 +44,7 @@ public static class ActionExecuteHelper
     public static int CalculateAttack(int attackValueFromCard)
     {
         var gameManager = GameManager.Instance;
+        var actionManager = ActionManager.Instance;
 
         var attackValue = attackValueFromCard;
 
@@ -51,6 +52,9 @@ public static class ActionExecuteHelper
         {
             attackValue += gameManager.TargetedMonster.Marked;
         }
+
+        attackValue += actionManager.AlterNextValue;
+        actionManager.AlterNextValue = 0;
 
         //an attack has been calculated and will happen, meaning inititive is lost.
         gameManager.ActiveHero.Initiative = false;

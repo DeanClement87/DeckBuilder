@@ -8,6 +8,7 @@ public class ActionModel : ScriptableObject
     public ActionEnum Action;
     public ActionTargetEnum Target;
     public int Value;
+    public string StringValue;
     public string ActionDataText;
     public ParticleEnum Particle;
     public ParticleBehavourEnum ParticleBehavour;

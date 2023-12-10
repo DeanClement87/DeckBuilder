@@ -1,6 +1,10 @@
 public enum ParticleEnum
 {
+    None,
     Slash,
     Fireball,
-    Explosion
+    Explosion,
+    Chaosbolt,
+    ChaosboltImpact,
+    Backstab
 }

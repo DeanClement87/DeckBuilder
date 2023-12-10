@@ -20,6 +20,7 @@ MonoBehaviour:
   Actions:
   - {fileID: 11400000, guid: f0321746ef752b749999138eea4896a4, type: 2}
   - {fileID: 11400000, guid: 5170e56406d716744810a1fc90bbf83e, type: 2}
+  - {fileID: 11400000, guid: 03a7d28fe3cfb0e41b06b5da5689ff6b, type: 2}
   - {fileID: 11400000, guid: 9979274e61755014ea66569ab7a1f6bf, type: 2}
   - {fileID: 11400000, guid: 465ff1e00e6fa1b4787b0ed1e676ece6, type: 2}
   CardConditionEnums: 

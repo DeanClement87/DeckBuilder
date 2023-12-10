@@ -26,11 +26,7 @@ public static class ActionExecuteFactory
                 return new AddThornsActionExecute();
             case ActionEnum.AddTownMood:
                 return new AddTownMoodActionExecute();
-            case ActionEnum.AttackByThornsStack:
-                return new AttackByThornsStackActionExecute();
-            case ActionEnum.AttackPlusFear:
-                return new AttackPlusFearActionExecute();
-            case ActionEnum.GiveManaToAllies:
+             case ActionEnum.GiveManaToAllies:
                 return new GiveManaToAlliesActionExecute("not_to_self");
             case ActionEnum.GiveManaToLane:
                 return new GiveManaToAlliesActionExecute();
@@ -38,9 +34,6 @@ public static class ActionExecuteFactory
                 return new GiveCardDrawToAlliesActionExecute();
             case ActionEnum.BeAfraid:
                 return new BeAfraidActionExecute();
-            case ActionEnum.Backstab:
-                return new BackstabActionExecute();
-
 
 
             //AUTO CHECKERS
@@ -48,6 +41,8 @@ public static class ActionExecuteFactory
                 return new SkipIfNoMonsterInLaneActionExecute();
             case ActionEnum.SkipIfNoKill:
                 return new SkipIfNoKillActionExecute();
+            case ActionEnum.AlterNextActionValue:
+                return new AlterNextActionValueExecute();
             default:
                 throw new ArgumentOutOfRangeException(nameof(actionEnum), actionEnum, "Unsupported action");
         }

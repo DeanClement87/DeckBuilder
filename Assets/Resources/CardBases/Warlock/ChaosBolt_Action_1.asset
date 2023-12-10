@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92df3301dfd627545b5be81728b9b1a0, type: 3}
   m_Name: ChaosBolt_Action_1
   m_EditorClassIdentifier: 
-  Action: 8
-  Target: 4
-  Value: 4
-  ActionDataText: 4 Damage Plus Fear
+  Action: 19
+  Target: 9
+  Value: 0
+  StringValue: addFear
+  ActionDataText: 
+  Particle: 0
+  ParticleBehavour: 0

@@ -16,3 +16,5 @@ MonoBehaviour:
   Target: 4
   Value: 6
   ActionDataText: 6 Damage.  Must have a friend in this lane.
+  Particle: 1
+  ParticleBehavour: 1

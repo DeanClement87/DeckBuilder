@@ -44,6 +44,7 @@ public class ActionManager : MonoBehaviour
     public int IncomingDamage { get; set; } = 0;
     public int ActionCounter { get; set; }
     public bool killDuringAction = false;
+    public int AlterNextValue = 0;
 
     public void ActionExecutor()
     {
@@ -55,6 +56,7 @@ public class ActionManager : MonoBehaviour
             gameManager.gameState = GameManager.GameState.HeroTurn;
             ActiveAction = null;
             killDuringAction = false;
+            AlterNextValue = 0;
             return;
         }
 

@@ -18,5 +18,6 @@ MonoBehaviour:
   Image: CardArt/backstab
   ManaCost: 1
   Actions:
+  - {fileID: 11400000, guid: bf9384b4d0399bf4db9d3d24ff08aade, type: 2}
   - {fileID: 11400000, guid: d9c62ac7d6cd5184ea7ffc0715fd310c, type: 2}
   CardConditionEnums: 01000000

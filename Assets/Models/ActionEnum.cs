@@ -4,19 +4,20 @@ public enum ActionEnum
     Distract,
     AddBlock,
     AddThorns,
-    AttackByThornsStack,
+    AttackByThornsStack,  //NOT IN USE
     GiveManaToAllies,
     GiveCardDrawToAllies,
     Mark,
-    AttackPlusFear,
+    AttackPlusFear, //NOT IN USE
     AddTownMood,
     BeAfraid,
     CleaveAttack,
-    Backstab,
+    Backstab, //NOT IN USE
     Jump,
     SkipIfNoMonsterInLane,
     SkipIfNoKill,
     GiveManaToLane,
     Stun,
-    Frozen
+    Frozen,
+    AlterNextActionValue
 }
