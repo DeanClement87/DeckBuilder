@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   CardName: Nightmare
-  Description: 10 Damage, causes 1 Fear
+  Description: 16 Damage, causes 1 Fear
   Image: CardArt/nightmare
   ManaCost: 2
   Actions:

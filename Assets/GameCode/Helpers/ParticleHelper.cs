@@ -40,6 +40,26 @@ public static class ParticleHelper
                 particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
                 particleObject.transform.localScale = new Vector3(100, 100, 0);
                 break;
+            case ParticleEnum.IceSpin:
+                particlePrefab = Resources.Load<GameObject>("JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Ice/CFXR4 Sword Trail ICE (360 Thick)");
+                particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
+                particleObject.transform.localScale = new Vector3(150, 150, 0);
+                break;
+            case ParticleEnum.Nightmare:
+                particlePrefab = Resources.Load<GameObject>("JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Explosions/CFXR4 Wave Explosion Purple");
+                particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
+                particleObject.transform.localScale = new Vector3(150, 150, 0);
+                break;
+            case ParticleEnum.Arrow:
+                particlePrefab = Resources.Load<GameObject>("JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Space/CFXR4 Laser + Trail (Orange)");
+                particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
+                particleObject.transform.localScale = new Vector3(150, 150, 0);
+                break;
+            case ParticleEnum.ArrowImpact:
+                particlePrefab = Resources.Load<GameObject>("JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Space/CFXR4 Laser Impact (Orange)");
+                particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
+                particleObject.transform.localScale = new Vector3(150, 150, 0);
+                break;
 
         }
 
@@ -58,21 +78,35 @@ public static class ParticleHelper
 
         GameObject particleObject = new GameObject();
         ParticleEnum impactParticle = ParticleEnum.None;
+        float projectileSpeed = 0;
         switch (particleEnum)
         {
             case ParticleEnum.Slash:
                 ParticleHelper.Create(ParticleEnum.Slash, gameManager.TargetedMonsterObject);
                 break;
+            case ParticleEnum.IceSpin:
+                ParticleHelper.Create(ParticleEnum.IceSpin, gameManager.TargetedMonsterObject);
+                break;
             case ParticleEnum.Backstab:
                 ParticleHelper.Create(ParticleEnum.Backstab, gameManager.TargetedMonsterObject);
+                break;
+            case ParticleEnum.Nightmare:
+                ParticleHelper.Create(ParticleEnum.Nightmare, gameManager.TargetedMonsterObject);
+                break;
+            case ParticleEnum.Arrow:
+                particleObject = ParticleHelper.Create(ParticleEnum.Arrow, gameManager.ActiveHeroObject);
+                impactParticle = ParticleEnum.ArrowImpact;
+                projectileSpeed = 20.0f;
                 break;
             case ParticleEnum.Fireball:
                 particleObject = ParticleHelper.Create(ParticleEnum.Fireball, gameManager.ActiveHeroObject);
                 impactParticle = ParticleEnum.Explosion;
+                projectileSpeed = 3.0f;
                 break;
             case ParticleEnum.Chaosbolt:
                 particleObject = ParticleHelper.Create(ParticleEnum.Chaosbolt, gameManager.ActiveHeroObject);
                 impactParticle = ParticleEnum.ChaosboltImpact;
+                projectileSpeed = 8.0f;
                 break;
         }
 
@@ -80,7 +114,7 @@ public static class ParticleHelper
         {
             case ParticleBehavourEnum.Projectile:
                 var projectileScript = particleObject.AddComponent<ProjectileScript>();
-                projectileScript.Go(gameManager.TargetedMonsterObject, impactParticle);
+                projectileScript.Go(gameManager.TargetedMonsterObject, impactParticle, projectileSpeed);
                 delayEnd = true;
                 break;
         }

@@ -15,5 +15,7 @@ MonoBehaviour:
   Action: 0
   Target: 5
   Value: 4
+  StringValue: 
   ActionDataText: 4 Damage
-  OnlyThisLane: 0
+  Particle: 9
+  ParticleBehavour: 2

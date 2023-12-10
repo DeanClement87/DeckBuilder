@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   CardName: Be Afraid
-  Description: Deal damage equal to Fear to anyone who attacks you.
+  Description: Deal damage equal to double Fear to anyone who attacks you.
   Image: CardArt/be_afraid
   ManaCost: 1
   Actions:
   - {fileID: 11400000, guid: a62b4b5324df7c242909e5ed8608c5b0, type: 2}
+  CardConditionEnums: 

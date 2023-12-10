@@ -4,12 +4,13 @@ public class ProjectileScript : MonoBehaviour
 {
     private GameObject target;
     private ParticleEnum impactParticle;
-    public float speed = 1.5f;
+    private float speed;
 
-    public void Go(GameObject target, ParticleEnum impactParticle)
+    public void Go(GameObject target, ParticleEnum impactParticle, float speed)
     {
         this.target = target;
         this.impactParticle = impactParticle;
+        this.speed = speed;
     }
 
     void Update()

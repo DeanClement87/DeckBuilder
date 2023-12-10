@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
                     Heroes.Add(CreateHero(HeroEnum.Knight, 1));
                     Heroes.Add(CreateHero(HeroEnum.Ranger, 2));
                     Heroes.Add(CreateHero(HeroEnum.Wizard, 3));
-                    Heroes.Add(CreateHero(HeroEnum.Rogue, 4));
+                    Heroes.Add(CreateHero(HeroEnum.Warlock, 4));
                 }
 
                 ConfirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");

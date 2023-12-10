@@ -6,5 +6,9 @@ public enum ParticleEnum
     Explosion,
     Chaosbolt,
     ChaosboltImpact,
-    Backstab
+    Backstab,
+    IceSpin,
+    Nightmare,
+    Arrow,
+    ArrowImpact
 }

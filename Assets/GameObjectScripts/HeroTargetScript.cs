@@ -67,7 +67,7 @@ public class HeroTargetScript : MonoBehaviour, IPointerClickHandler
             //BE AFRAID
             if (hs.HeroModel.BeAfraid)
             {
-                monsterManager.monsterTurn.monster.CurrentHealth -= gameManager.Town.Fear();
+                monsterManager.monsterTurn.monster.CurrentHealth -= gameManager.Town.Fear()*2;
             }
 
             //MONSTER ATTACK

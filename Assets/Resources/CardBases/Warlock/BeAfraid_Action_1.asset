@@ -15,4 +15,7 @@ MonoBehaviour:
   Action: 10
   Target: 0
   Value: 0
-  ActionDataText: Inflict damage equal to Fear to your attackers
+  StringValue: 
+  ActionDataText: Inflict damage equal to double Fear to your attackers
+  Particle: 0
+  ParticleBehavour: 0

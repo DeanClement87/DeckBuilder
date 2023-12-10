@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Action: 0
   Target: 4
-  Value: 10
-  ActionDataText: 10 Damage and Add 1 Fear
+  Value: 16
+  StringValue: 
+  ActionDataText: 16 Damage and Add 1 Fear
+  Particle: 8
+  ParticleBehavour: 1
