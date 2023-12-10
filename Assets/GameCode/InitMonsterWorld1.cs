@@ -7,11 +7,15 @@ public class InitMonsterWorld1
 
     public static List<MonsterModel> InitMonsters(int level)
     {
-        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_01"));
-        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_02"));
-        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_03"));
-        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_04"));
-        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_05"));
+        //RATS
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_01")); //Grunt
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_02")); //Archer
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_03")); //Rogue
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_04")); //Spearman
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Ratman_05")); //Armoured
+
+        //GNOLLS
+        BaseMonsters.Add(Resources.Load<BaseMonsterModel>("MonsterBases/Gnoll_01")); //LootGnoll
 
         switch (level)
         {
@@ -24,11 +28,11 @@ public class InitMonsterWorld1
 
     private static List<MonsterModel> Level1()
     {
-        var monster1 = new MonsterModel(BaseMonsters[0]);
-        var monster2 = new MonsterModel(BaseMonsters[0]);
-        var monster3 = new MonsterModel(BaseMonsters[0]);
-        var monster4 = new MonsterModel(BaseMonsters[0]);
-        var monster5 = new MonsterModel(BaseMonsters[0]);
+        var monster1 = new MonsterModel(BaseMonsters[5]);
+        var monster2 = new MonsterModel(BaseMonsters[5]);
+        var monster3 = new MonsterModel(BaseMonsters[5]);
+        var monster4 = new MonsterModel(BaseMonsters[5]);
+        var monster5 = new MonsterModel(BaseMonsters[5]);
         var monster6 = new MonsterModel(BaseMonsters[0]);
         var monster7 = new MonsterModel(BaseMonsters[0]);
         var monster8 = new MonsterModel(BaseMonsters[0]);

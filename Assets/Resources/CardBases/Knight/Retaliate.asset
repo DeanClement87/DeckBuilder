@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4
   CardName: Retaliate
-  Description: Gain 3 Retaliate
+  Description: Gain 4 Retaliate
   Image: CardArt/retaliate
   ManaCost: 1
   Actions:
   - {fileID: 11400000, guid: 3534c6d031efbda43a95f04441e4c984, type: 2}
+  CardConditionEnums: 

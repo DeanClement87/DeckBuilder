@@ -27,6 +27,7 @@ public class CardSelectScript : MonoBehaviour, IPointerClickHandler
     {
         cardModel = card;
         heroModel = hero;
+
         cardName.text = card.BaseCard.CardName;
         cardDescription.text = card.BaseCard.Description;
         manaCost.text = card.BaseCard.ManaCost.ToString();
@@ -41,29 +42,32 @@ public class CardSelectScript : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         //add this card to hero
-        gameManager.ActiveHero.Deck.Add(cardModel);
+        heroModel.Deck.Add(cardModel);
 
-        if (gameManager.ActiveHero.Hand.Count() < 6)
+        if (heroModel.Hand.Count() < 6)
         {
             var heroCardPrefab = Resources.Load<GameObject>("HeroCard");
             GameObject newCard = GameObject.Instantiate(heroCardPrefab, Vector3.zero, Quaternion.identity);
             newCard.transform.SetParent(gameManager.MainCanvas.transform, true);
-            gameManager.ActiveHero.Hand.Add(newCard);
-            gameManager.ActiveHero.OrganiseHand();
+            heroModel.Hand.Add(newCard);
+            heroModel.OrganiseHand();
 
             CardScript c = newCard.GetComponent<CardScript>();
-            c.SetCardData(cardModel, gameManager.ActiveHero);
+            c.SetCardData(cardModel, heroModel);
         }
         else
         {
-            gameManager.ActiveHero.DiscardPile.Add(cardModel);
+            heroModel.DiscardPile.Add(cardModel);
         }
+
+        if (gameManager.gameState == GameManager.GameState.SelectCardHeroTurn)
+            gameManager.gameState = GameManager.GameState.HeroTurn;
+        else if (gameManager.gameState == GameManager.GameState.SelectCardMonsterTurn)
+            gameManager.gameState = GameManager.GameState.MonsterTurn;
 
         //remove card options
         var objectsWithTag = GameObject.FindGameObjectsWithTag("CardSelectTag");
         foreach (GameObject obj in objectsWithTag)
             Destroy(obj);
-
-        gameManager.gameState = GameManager.GameState.HeroTurn;
     }
 }

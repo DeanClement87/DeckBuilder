@@ -15,8 +15,10 @@ public class MonsterScript : MonoBehaviour
     public MonsterModel monsterModel;
     public TextMeshProUGUI monsterHealth;
     public TextMeshProUGUI monsterAttack;
+    public Image monsterAttributeImage;
 
     private Image monsterImage;
+    private HeroModel LastAttacker;
 
     private List<GameObject> debuffs = new List<GameObject>();
     private Dictionary<DebuffEnum, bool> debuffDict = new Dictionary<DebuffEnum, bool>();
@@ -36,6 +38,24 @@ public class MonsterScript : MonoBehaviour
 
         Sprite monsterSprite = Resources.Load<Sprite>(monsterModel.BaseMonster.Image);
         monsterImage.sprite = monsterSprite;
+
+        //need a better way of doing this to be able to show more than 1 attribute at a time.
+        Sprite attributeSprite = null;
+        foreach (var attribute in monster.BaseMonster.MonsterAttributes)
+        {
+            switch (attribute)
+            {
+                case MonsterAttributeEnum.Loot:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Loot");
+                    break;
+            }
+
+        }
+        if (attributeSprite != null)
+            monsterAttributeImage.sprite = attributeSprite;
+        else
+            monsterAttributeImage.enabled = false;
+
     }
 
     public void ResetDebuffs()
@@ -146,6 +166,14 @@ public class MonsterScript : MonoBehaviour
         //DEAD
         if (monsterModel.CurrentHealth <= 0)
         {
+            if (monsterModel.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Loot))
+            { 
+                if (gameManager.gameState == GameManager.GameState.HeroTurn) 
+                    gameManager.gameState = GameManager.GameState.SelectCardHeroTurn;
+                else if (gameManager.gameState == GameManager.GameState.MonsterTurn)
+                    gameManager.gameState = GameManager.GameState.SelectCardMonsterTurn;
+            }
+
             gameManager.RemoveMonsterFromGame(gameObject, monsterModel);
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -48,7 +49,8 @@ public class GameManager : MonoBehaviour
         HeroTurn,
         CardAction,
         EndRound,
-        SelectCard
+        SelectCardHeroTurn,
+        SelectCardMonsterTurn
     }
 
     public static GameManager Instance
@@ -126,6 +128,14 @@ public class GameManager : MonoBehaviour
                     Heroes.Add(CreateHero(HeroEnum.Ranger, 2));
                     Heroes.Add(CreateHero(HeroEnum.Wizard, 3));
                     Heroes.Add(CreateHero(HeroEnum.Warlock, 4));
+                }
+
+                //set the avatars when selecting a card
+                for (int i = 0; i < 4; i++)
+                {
+                    var cardSelectAvatar1 = GameObject.Find($"CardSelectAvatar{i+1}");
+                    var csa = cardSelectAvatar1.GetComponent<CardSelectAvatarScript>();
+                    csa.HeroModel = Heroes[i];
                 }
 
                 ConfirmHeroPlacement = GameObject.Find("ConfirmHeroPlacement");
@@ -267,9 +277,6 @@ public class GameManager : MonoBehaviour
 
                 ChangeGameState(GameState.HeroPlacement);
 
-                break;
-            case GameState.SelectCard:
-            
                 break;
         }
     }

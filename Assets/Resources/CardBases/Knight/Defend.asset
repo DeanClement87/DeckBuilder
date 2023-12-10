@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   CardName: Defend
-  Description: Gain 4 Block
+  Description: Gain 5 Block
   Image: CardArt/defend
   ManaCost: 1
   Actions:
   - {fileID: 11400000, guid: 459b238e4f3d45c41a7fb0657a304ad8, type: 2}
+  CardConditionEnums: 

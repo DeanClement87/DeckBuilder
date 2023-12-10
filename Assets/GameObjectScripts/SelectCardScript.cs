@@ -23,9 +23,7 @@ public class SelectCardScript : MonoBehaviour
                 if (hit.collider.gameObject != gameObject)
                     return;
 
-                gameManager.gameState = GameManager.GameState.SelectCard;
-                gameManager.ActiveHero.ShowNewCardOpions();
-
+                gameManager.gameState = GameManager.GameState.SelectCardHeroTurn;
             }
         }
     }

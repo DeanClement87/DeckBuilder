@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Action: 2
   Target: 0
-  Value: 4
-  ActionDataText: 4 Block
+  Value: 5
+  StringValue: 
+  ActionDataText: 5 Block
+  Particle: 0
+  ParticleBehavour: 0

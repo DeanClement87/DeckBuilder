@@ -96,7 +96,7 @@ public class HeroModel : ScriptableObject
         }
     }
 
-    public void ShowNewCardOpions()
+    public void ShowCardOptions()
     {
         var blockOutScreen = GameObject.Find("BlockOutScreen");
 
@@ -105,9 +105,10 @@ public class HeroModel : ScriptableObject
         for (int i = 0; i < 3; i++)
         {
             //create an empty card object
-            var vector = new Vector3(-230 + (230 * i), 0, 0);
+            var vector = new Vector3(-330 + (330 * i), -290, 0);
             var heroCardChoicePrefab = Resources.Load<GameObject>("HeroCardChoice");
             GameObject newCard = GameObject.Instantiate(heroCardChoicePrefab, vector, Quaternion.identity);
+            newCard.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
             newCard.transform.SetParent(blockOutScreen.transform, false);
 
             //randomly select a card from the possible cards for this hero
