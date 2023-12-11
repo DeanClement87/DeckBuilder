@@ -98,7 +98,7 @@ public class HeroModel : ScriptableObject
 
     public void ShowCardOptions()
     {
-        var blockOutScreen = GameObject.Find("BlockOutScreen");
+        var cardRewardScreen = GameObject.Find("CardRewardScreen");
 
         int[] cardIndexesOffered = { -1, -1, -1 };
 
@@ -109,7 +109,7 @@ public class HeroModel : ScriptableObject
             var heroCardChoicePrefab = Resources.Load<GameObject>("HeroCardChoice");
             GameObject newCard = GameObject.Instantiate(heroCardChoicePrefab, vector, Quaternion.identity);
             newCard.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
-            newCard.transform.SetParent(blockOutScreen.transform, false);
+            newCard.transform.SetParent(cardRewardScreen.transform, false);
 
             //randomly select a card from the possible cards for this hero
             int cardIndexToOffer = -1;

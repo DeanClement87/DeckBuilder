@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlockOutScreen : MonoBehaviour
+public class CardRewardScreenScript : MonoBehaviour
 {
-    private bool BlockOutScreenLive;
+    private bool CardRewardScreenLive;
     private GameManager gameManager;
+    public bool HeroSelected = false;
     void Awake()
     {
         gameManager = GameManager.Instance;
@@ -24,11 +25,11 @@ public class BlockOutScreen : MonoBehaviour
         {
             transform.SetAsLastSibling();
             PositionHelper.ChangePositionY(gameObject, 0);
-            BlockOutScreenLive = true;
+            CardRewardScreenLive = true;
         }
         else
         {
-            if (BlockOutScreenLive == true)
+            if (CardRewardScreenLive == true)
             {
                 //reset all avatar borders to black
                 for (int i = 0; i < 4; i++)
@@ -40,8 +41,10 @@ public class BlockOutScreen : MonoBehaviour
                     avatarBorderImage.sprite = blackBorder;
                 }
 
-                BlockOutScreenLive = false;
+                CardRewardScreenLive = false;
+                HeroSelected = false;
             }
+
             PositionHelper.ChangePositionY(gameObject, 1620);
         }
 

@@ -31,6 +31,14 @@ public class CardSelectAvatarScript : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        var cardRewardScreen = transform.parent.gameObject;
+        var sc = cardRewardScreen.GetComponent<CardRewardScreenScript>();
+
+        if (sc.HeroSelected == true)
+            return;
+
+        sc.HeroSelected = true;  
+
         var border = GetComponent<Image>();
         var blueBorder = Resources.Load<Sprite>("AvatarAssets/BlueAvatarBackground");
         border.sprite = blueBorder;
