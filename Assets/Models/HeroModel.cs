@@ -141,6 +141,12 @@ public class HeroModel : ScriptableObject
                 heroLane.HeroesModels.Remove(this);
                 heroLane.ObjectsInLane.Remove(hero);
                 Destroy(hero);
+
+                //if all heroes are dead
+                if (gameManager.Heroes.Any(x => x.Dead == false) == false)
+                {
+                    gameManager.ChangeGameState(GameManager.GameState.GameOver);
+                }
             }
             break;        
         }

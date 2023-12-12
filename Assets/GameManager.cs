@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public HeroModel TargetedHero { get; set; }
 
     //WHERE WE ARE UP TO
+    public int world { get; set; }
+    public int level { get; set; }
     public GameState gameState { get; set; }
     public int WaveCounter { get; set; }
 
@@ -51,7 +53,9 @@ public class GameManager : MonoBehaviour
         EndRound,
         SelectCardHeroTurn,
         SelectCardMonsterTurn,
-        MonsterOverflow
+        MonsterOverflow,
+        GameOver,
+        LevelWon
     }
 
     public static GameManager Instance
@@ -100,7 +104,13 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GameStart:
-                //add lanes
+                world = 1;
+                level = 1;
+
+                Heroes = new List<HeroModel>();
+                HeroLanes = new List<LaneModel>();
+                MonsterLanes = new List<LaneModel>();
+
                 HeroLanes.Add(new LaneModel(1));
                 HeroLanes.Add(new LaneModel(2));
                 HeroLanes.Add(new LaneModel(3));
@@ -121,6 +131,7 @@ public class GameManager : MonoBehaviour
                     Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[1], 2));
                     Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[2], 3));
                     Heroes.Add(CreateHero(HeroesSelectionFromMainScreen[3], 4));
+                    HeroesSelectionFromMainScreen = new List<HeroEnum>();
                 }
                 else
                 {
@@ -152,7 +163,7 @@ public class GameManager : MonoBehaviour
                 Town.Mood = 0;
                 WaveCounter = 1;
 
-                Monsters = InitMonsterWorld1.InitMonsters(1); //TODO: handle multiple worlds
+                Monsters = InitMonsterWorld1.InitMonsters(level); //TODO: handle multiple worlds
 
                 ChangeGameState(GameState.HeroSpawn);
                 break;
@@ -278,6 +289,24 @@ public class GameManager : MonoBehaviour
                 hero.DiscardHand();
 
                 ChangeGameState(GameState.HeroPlacement);
+
+                break;
+            case GameState.GameOver:
+                var gameOverScreen = GameObject.Find($"GameOverScreen");
+                gameOverScreen.transform.localPosition = Vector3.zero;
+                gameOverScreen.transform.SetAsLastSibling();
+
+                var s = gameOverScreen.GetComponent<GameOverScreenScript>();
+                s.SetGameOverStats();
+
+                break;
+            case GameState.LevelWon:
+                var levelWonScreen = GameObject.Find($"LevelWonScreen");
+                levelWonScreen.transform.localPosition = Vector3.zero;
+                levelWonScreen.transform.SetAsLastSibling();
+
+                //var gos = levelWonScreen.GetComponent<GameOverScreenScript>();
+                //gos.SetGameOverStats();
 
                 break;
         }

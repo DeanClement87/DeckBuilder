@@ -19,6 +19,8 @@ public class TownScript : MonoBehaviour
         //cannot have more health than the starting health
         if (gameManager.Town.Health > gameManager.Town.BaseHealth)
             gameManager.Town.Health = gameManager.Town.BaseHealth;
+        else if (gameManager.Town.Health <= 0)
+            gameManager.ChangeGameState(GameManager.GameState.GameOver);
 
         townHealth.text = $"HP: {gameManager.Town.Health}";
         mood.text = $"MD: {gameManager.Town.Mood}";
