@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         SelectCardMonsterTurn,
         MonsterOverflow,
         GameOver,
-        LevelWon
+        LevelComplete
     }
 
     public static GameManager Instance
@@ -108,21 +108,6 @@ public class GameManager : MonoBehaviour
                 level = 1;
 
                 Heroes = new List<HeroModel>();
-                HeroLanes = new List<LaneModel>();
-                MonsterLanes = new List<LaneModel>();
-
-                HeroLanes.Add(new LaneModel(1));
-                HeroLanes.Add(new LaneModel(2));
-                HeroLanes.Add(new LaneModel(3));
-                MonsterLanes.Add(new LaneModel(1));
-                MonsterLanes.Add(new LaneModel(2));
-                MonsterLanes.Add(new LaneModel(3));
-
-                for (int i = 0; i < 3; i++)
-                {
-                    HeroLanes[i].OppositeLane = MonsterLanes[i];
-                    MonsterLanes[i].OppositeLane = HeroLanes[i];
-                }
 
                 if (HeroesSelectionFromMainScreen.Any())
                 {
@@ -163,7 +148,38 @@ public class GameManager : MonoBehaviour
                 Town.Mood = 0;
                 WaveCounter = 1;
 
-                Monsters = InitMonsterWorld1.InitMonsters(level); //TODO: handle multiple worlds
+                foreach (var hero in Heroes)
+                    hero.ResetHeroesCards();
+
+                foreach (var lane in HeroLanes)
+                {
+                    foreach (var obj in lane.ObjectsInLane)
+                        Destroy(obj);
+                }
+
+                foreach (var lane in MonsterLanes)
+                {
+                    foreach (var obj in lane.ObjectsInLane)
+                        Destroy(obj);
+                }
+
+                HeroLanes = new List<LaneModel>();
+                MonsterLanes = new List<LaneModel>();
+
+                HeroLanes.Add(new LaneModel(1));
+                HeroLanes.Add(new LaneModel(2));
+                HeroLanes.Add(new LaneModel(3));
+                MonsterLanes.Add(new LaneModel(1));
+                MonsterLanes.Add(new LaneModel(2));
+                MonsterLanes.Add(new LaneModel(3));
+
+                for (int i = 0; i < 3; i++)
+                {
+                    HeroLanes[i].OppositeLane = MonsterLanes[i];
+                    MonsterLanes[i].OppositeLane = HeroLanes[i];
+                }
+
+                Monsters = InitMonsterWorld1.InitMonsters(1); //TODO: handle multiple worlds
 
                 ChangeGameState(GameState.HeroSpawn);
                 break;
@@ -196,7 +212,9 @@ public class GameManager : MonoBehaviour
                 var monsterOverflow = new List<MonsterModel>();
                 foreach (var lane in MonsterLanes)
                 {
-                    int randomIndex = UnityEngine.Random.Range(0, Monsters.Count);
+                    if (!Monsters.Any()) continue;
+
+                    int randomIndex = UnityEngine.Random.Range(0, Monsters.Count());
 
                     if (lane.MonsterModels.Count() == 3) //overflow
                     {
@@ -286,7 +304,7 @@ public class GameManager : MonoBehaviour
 
                 //discard all heroes hands.
                 foreach (var hero in Heroes)
-                hero.DiscardHand();
+                    hero.DiscardHand();
 
                 ChangeGameState(GameState.HeroPlacement);
 
@@ -300,13 +318,13 @@ public class GameManager : MonoBehaviour
                 s.SetGameOverStats();
 
                 break;
-            case GameState.LevelWon:
-                var levelWonScreen = GameObject.Find($"LevelWonScreen");
-                levelWonScreen.transform.localPosition = Vector3.zero;
-                levelWonScreen.transform.SetAsLastSibling();
+            case GameState.LevelComplete:
+                var levelCompleteScreen = GameObject.Find($"LevelCompleteScreen");
+                levelCompleteScreen.transform.localPosition = Vector3.zero;
+                levelCompleteScreen.transform.SetAsLastSibling();
 
-                //var gos = levelWonScreen.GetComponent<GameOverScreenScript>();
-                //gos.SetGameOverStats();
+                var gos = levelCompleteScreen.GetComponent<LevelCompleteScreenScript>();
+                gos.SetLevelCompleteStats();
 
                 break;
         }
@@ -469,10 +487,12 @@ public class GameManager : MonoBehaviour
 
     private void AddRemoveMonsterToLane(GameObject monster, MonsterModel monsterModel, int laneNumber, bool Add)
     {
+        var monstersInLanesCount = 0;
         foreach (var lane in MonsterLanes)
         {
             lane.ObjectsInLane.Remove(monster);
             lane.MonsterModels.Remove(monsterModel);
+            monstersInLanesCount += lane.MonsterModels.Count();
         }
 
         if (Add)
@@ -483,6 +503,15 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(monster);
+
+            //check if there are any monsters left.
+            //if none then level complete
+            if (!Monsters.Any() && monstersInLanesCount == 0)
+            {
+                ChangeGameState(GameState.LevelComplete);
+                return;
+            }
+
         }
 
 

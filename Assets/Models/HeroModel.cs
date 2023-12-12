@@ -61,6 +61,21 @@ public class HeroModel : ScriptableObject
         Hand = new List<GameObject>();
     }
 
+    public void ResetHeroesCards()
+    {
+        foreach (var card in Hand)
+        {
+            CardScript c = card.GetComponent<CardScript>();
+            DiscardPile.Add(c.GetCardModel());
+
+            Destroy(card);
+        }
+
+        DrawPile.AddRange(Deck);
+        DiscardPile = new List<CardModel>();
+        Hand = new List<GameObject>();
+    }
+
     public void Shuffle()
     {
         DrawPile.AddRange(DiscardPile);
