@@ -12,9 +12,17 @@ public class OverFlowScreenScript : MonoBehaviour
     public GameObject monsterObject;
     public TextMeshProUGUI overflowDamage;
 
+    private List<MonsterModel> monsterOverflowQueue;
+
     void Awake()
     {
         gameManager = GameManager.Instance;
+    }
+
+    public void StartOverflow(List<MonsterModel> monsterOverflowQueue)
+    {
+        this.monsterOverflowQueue = monsterOverflowQueue;
+        SetMonsterData(monsterOverflowQueue.First());
     }
 
     public void SetMonsterData(MonsterModel monster)
@@ -26,7 +34,7 @@ public class OverFlowScreenScript : MonoBehaviour
 
         overflowDamage.text = $"In this case, your town is going to take {monsterModel.BaseMonster.Attack * 2} and gain 1 Fear.";
 
-        gameManager.MonsterOverflowQueue.Remove(monster);
+        monsterOverflowQueue.Remove(monster);
     }
 
     public void ConfirmOverflow()
@@ -34,8 +42,8 @@ public class OverFlowScreenScript : MonoBehaviour
         gameManager.Town.Health -= monsterModel.BaseMonster.Attack * 2;
         gameManager.Town.Mood -= 1;
 
-        if (gameManager.MonsterOverflowQueue.Any())
-            SetMonsterData(gameManager.MonsterOverflowQueue.First());
+        if (monsterOverflowQueue.Any())
+            SetMonsterData(monsterOverflowQueue.First());
         else
         {
             transform.localPosition = new Vector3(2000f, 0f, 0f);

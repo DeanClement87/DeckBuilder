@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     //WHERE WE ARE UP TO
     public GameState gameState { get; set; }
     public int WaveCounter { get; set; }
-    public List<MonsterModel> MonsterOverflowQueue { get; set; } = new List<MonsterModel>();
 
     public enum GameState
     {
@@ -175,21 +174,22 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameState.MonsterSpawn:
-                //if no more waves, dont try and spawn anymore monsters
-                if (WaveCounter > 7)
+                //if no more monsters, dont try and spawn anymore monsters
+                if (Monsters.Any() == false)
                 {
                     ChangeGameState(GameState.HeroTurn);
                     break;
                 }
 
                 //spawn in a monster for each lane
+                var monsterOverflow = new List<MonsterModel>();
                 foreach (var lane in MonsterLanes)
                 {
                     int randomIndex = UnityEngine.Random.Range(0, Monsters.Count);
 
                     if (lane.MonsterModels.Count() == 3) //overflow
                     {
-                        MonsterOverflowQueue.Add(Monsters[randomIndex]);
+                        monsterOverflow.Add(Monsters[randomIndex]);
                     }
                     else
                     {
@@ -202,12 +202,11 @@ public class GameManager : MonoBehaviour
                         ms.SetMonsterData(Monsters[randomIndex]);
 
                         AddMonsterToLane(monsterObject, Monsters[randomIndex], lane.laneNumber);
-                    }
-
-                    Monsters.RemoveAt(randomIndex);
+                        Monsters.RemoveAt(randomIndex);
+                    }         
                 }
 
-                HandleMonsterOverflowQueue();
+                HandleMonsterOverflowQueue(monsterOverflow);
 
                 
                 break;
@@ -244,7 +243,6 @@ public class GameManager : MonoBehaviour
                 monsterManager.MonsterExecutorStart();
 
                 break;
-
             case GameState.EndRound:
                 WaveCounter++;
                 //remove all hero temp buffs
@@ -314,9 +312,9 @@ public class GameManager : MonoBehaviour
         return newHero;
     }
 
-    public void HandleMonsterOverflowQueue()
+    public void HandleMonsterOverflowQueue(List<MonsterModel> monsterOverflowQueue)
     {
-        if (MonsterOverflowQueue.Any() == false)
+        if (monsterOverflowQueue.Any() == false)
         {
             ChangeGameState(GameState.HeroTurn);
             return;
@@ -329,7 +327,7 @@ public class GameManager : MonoBehaviour
         overflowScreen.transform.SetAsLastSibling();
 
         var s = overflowScreen.GetComponent<OverFlowScreenScript>();
-        s.SetMonsterData(MonsterOverflowQueue.First());
+        s.StartOverflow(monsterOverflowQueue);
     }
 
     public void HideGameObjectOffScreen(string gameObjectName, bool hide)
