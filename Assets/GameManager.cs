@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     //WHERE WE ARE UP TO
     public GameState gameState { get; set; }
     public int WaveCounter { get; set; }
+    public List<MonsterModel> MonsterOverflowQueue { get; set; } = new List<MonsterModel>();
 
     public enum GameState
     {
@@ -50,7 +51,8 @@ public class GameManager : MonoBehaviour
         CardAction,
         EndRound,
         SelectCardHeroTurn,
-        SelectCardMonsterTurn
+        SelectCardMonsterTurn,
+        MonsterOverflow
     }
 
     public static GameManager Instance
@@ -187,7 +189,7 @@ public class GameManager : MonoBehaviour
 
                     if (lane.MonsterModels.Count() == 3) //overflow
                     {
-                        MonsterOverflow(Monsters[randomIndex]);
+                        MonsterOverflowQueue.Add(Monsters[randomIndex]);
                     }
                     else
                     {
@@ -205,7 +207,9 @@ public class GameManager : MonoBehaviour
                     Monsters.RemoveAt(randomIndex);
                 }
 
-                ChangeGameState(GameState.HeroTurn);
+                HandleMonsterOverflowQueue();
+
+                
                 break;
             case GameState.HeroTurn:
                 EndHeroTurn.SetActive(true);
@@ -310,10 +314,22 @@ public class GameManager : MonoBehaviour
         return newHero;
     }
 
-    public void MonsterOverflow(MonsterModel monsterModel)
+    public void HandleMonsterOverflowQueue()
     {
-        //do something when monster overflows.
-        //some sort of damage to town.
+        if (MonsterOverflowQueue.Any() == false)
+        {
+            ChangeGameState(GameState.HeroTurn);
+            return;
+        }
+
+        ChangeGameState(GameState.MonsterOverflow);
+
+        var overflowScreen = GameObject.Find($"OverflowScreen");
+        overflowScreen.transform.localPosition = Vector3.zero;
+        overflowScreen.transform.SetAsLastSibling();
+
+        var s = overflowScreen.GetComponent<OverFlowScreenScript>();
+        s.SetMonsterData(MonsterOverflowQueue.First());
     }
 
     public void HideGameObjectOffScreen(string gameObjectName, bool hide)

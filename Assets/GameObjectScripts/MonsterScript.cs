@@ -137,6 +137,8 @@ public class MonsterScript : MonoBehaviour
 
     public void Update()
     {
+        if (monsterModel == null) return;
+
         var attack = monsterModel.BaseMonster.Attack - monsterModel.Distract;
         if (attack < 0) attack = 0;
 
