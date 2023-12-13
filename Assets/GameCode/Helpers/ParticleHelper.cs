@@ -68,7 +68,7 @@ public static class ParticleHelper
         return particleObject;
     }
 
-    public static bool PerformParticleSequence(ParticleEnum particleEnum, ParticleBehavourEnum particleBehavourEnum)
+    public static bool PerformParticleSequence(ParticleEnum particleEnum, ParticleBehavourEnum particleBehavourEnum, GameObject target, GameObject start = null)
     {
         var gameManager = GameManager.Instance;
 
@@ -82,29 +82,29 @@ public static class ParticleHelper
         switch (particleEnum)
         {
             case ParticleEnum.Slash:
-                ParticleHelper.Create(ParticleEnum.Slash, gameManager.TargetedMonsterObject);
+                Create(ParticleEnum.Slash, target);
                 break;
             case ParticleEnum.IceSpin:
-                ParticleHelper.Create(ParticleEnum.IceSpin, gameManager.TargetedMonsterObject);
+                Create(ParticleEnum.IceSpin, target);
                 break;
             case ParticleEnum.Backstab:
-                ParticleHelper.Create(ParticleEnum.Backstab, gameManager.TargetedMonsterObject);
+                Create(ParticleEnum.Backstab, target);
                 break;
             case ParticleEnum.Nightmare:
-                ParticleHelper.Create(ParticleEnum.Nightmare, gameManager.TargetedMonsterObject);
+                Create(ParticleEnum.Nightmare, target);
                 break;
             case ParticleEnum.Arrow:
-                particleObject = ParticleHelper.Create(ParticleEnum.Arrow, gameManager.ActiveHeroObject);
+                particleObject = Create(ParticleEnum.Arrow, start);
                 impactParticle = ParticleEnum.ArrowImpact;
                 projectileSpeed = 20.0f;
                 break;
             case ParticleEnum.Fireball:
-                particleObject = ParticleHelper.Create(ParticleEnum.Fireball, gameManager.ActiveHeroObject);
+                particleObject = Create(ParticleEnum.Fireball, start);
                 impactParticle = ParticleEnum.Explosion;
                 projectileSpeed = 3.0f;
                 break;
             case ParticleEnum.Chaosbolt:
-                particleObject = ParticleHelper.Create(ParticleEnum.Chaosbolt, gameManager.ActiveHeroObject);
+                particleObject = Create(ParticleEnum.Chaosbolt, start);
                 impactParticle = ParticleEnum.ChaosboltImpact;
                 projectileSpeed = 8.0f;
                 break;
@@ -114,7 +114,7 @@ public static class ParticleHelper
         {
             case ParticleBehavourEnum.Projectile:
                 var projectileScript = particleObject.AddComponent<ProjectileScript>();
-                projectileScript.Go(gameManager.TargetedMonsterObject, impactParticle, projectileSpeed);
+                projectileScript.Go(target, impactParticle, projectileSpeed);
                 delayEnd = true;
                 break;
         }

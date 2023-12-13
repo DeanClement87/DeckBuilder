@@ -148,9 +148,15 @@ public class GameManager : MonoBehaviour
                 Town.Mood = 0;
                 WaveCounter = 1;
 
+                //reset heroes cards
+                //reset heroes health
                 foreach (var hero in Heroes)
+                {
+                    hero.Health = hero.BaseHealth;
                     hero.ResetHeroesCards();
+                }
 
+                //remove any objects left in lanes
                 foreach (var lane in HeroLanes)
                 {
                     foreach (var obj in lane.ObjectsInLane)
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
                         Destroy(obj);
                 }
 
+                //reset lanes
                 HeroLanes = new List<LaneModel>();
                 MonsterLanes = new List<LaneModel>();
 
@@ -178,6 +185,7 @@ public class GameManager : MonoBehaviour
                     HeroLanes[i].OppositeLane = MonsterLanes[i];
                     MonsterLanes[i].OppositeLane = HeroLanes[i];
                 }
+
 
                 Monsters = InitMonsterWorld1.InitMonsters(1); //TODO: handle multiple worlds
 

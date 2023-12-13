@@ -13,7 +13,9 @@ public class FrozenActionExecute : IActionExecute
     {
         gameManager.TargetedMonster.Frozen = true;
 
-        var delayEnd = ParticleHelper.PerformParticleSequence(actionManager.ActiveAction.Particle, actionManager.ActiveAction.ParticleBehavour);
+        var delayEnd = ParticleHelper.PerformParticleSequence(actionManager.ActiveAction.Particle, 
+            actionManager.ActiveAction.ParticleBehavour,
+            gameManager.TargetedMonsterObject);
 
         ActionExecuteHelper.EndOfExecute();
     }

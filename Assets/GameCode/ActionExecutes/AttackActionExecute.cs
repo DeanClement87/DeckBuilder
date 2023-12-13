@@ -13,9 +13,12 @@ public class AttackActionExecute : IActionExecute
 
     public void Execute()
     {
-        actionManager.IncomingDamage = ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value);
+        actionManager.IncomingDamage = ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value, gameManager.TargetedMonster);
 
-        var delayEnd = ParticleHelper.PerformParticleSequence(actionManager.ActiveAction.Particle, actionManager.ActiveAction.ParticleBehavour);
+        var delayEnd = ParticleHelper.PerformParticleSequence(actionManager.ActiveAction.Particle, 
+            actionManager.ActiveAction.ParticleBehavour, 
+            gameManager.TargetedMonsterObject, 
+            gameManager.ActiveHeroObject);
 
         if (delayEnd == false)
             ActionExecuteHelper.EndOfExecute();

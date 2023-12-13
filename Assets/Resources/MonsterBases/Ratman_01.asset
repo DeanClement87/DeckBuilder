@@ -18,3 +18,4 @@ MonoBehaviour:
   Image: MonsterArt/Ratman_01
   Health: 12
   Attack: 2
+  MonsterAttributes: 02000000

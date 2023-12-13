@@ -8,7 +8,7 @@ public class InitHeroesScript
         hero.HeroBoardArt = "HeroArt/Knight1Board";
         hero.HeroArtAvatar = "HeroArt/Knight1Avatar";
         hero.CardTemplateArt = "CardAssets/KnightCard";
-        hero.Health = 20;
+        hero.BaseHealth = 20;
 
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/Retaliate"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/Defend"));
@@ -48,7 +48,7 @@ public class InitHeroesScript
         hero.HeroBoardArt = "HeroArt/Ranger1Board";
         hero.HeroArtAvatar = "HeroArt/Ranger1Avatar";
         hero.CardTemplateArt = "CardAssets/RangerCard";
-        hero.Health = 15;
+        hero.BaseHealth = 15;
 
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/Shoot"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/Diversion"));
@@ -89,7 +89,7 @@ public class InitHeroesScript
         hero.HeroBoardArt = "HeroArt/Warlock1Board";
         hero.HeroArtAvatar = "HeroArt/Warlock1Avatar";
         hero.CardTemplateArt = "CardAssets/WarlockCard";
-        hero.Health = 24;
+        hero.BaseHealth = 24;
 
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/ChaosBolt"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/Nightmare"));
@@ -128,7 +128,7 @@ public class InitHeroesScript
         hero.HeroBoardArt = "HeroArt/Rogue1Board";
         hero.HeroArtAvatar = "HeroArt/Rogue1Avatar";
         hero.CardTemplateArt = "CardAssets/RogueCard";
-        hero.Health = 13;
+        hero.BaseHealth = 13;
 
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/Backstab"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/NowYouSeeMe"));
@@ -167,7 +167,7 @@ public class InitHeroesScript
         hero.HeroBoardArt = "HeroArt/Wizard1Board";
         hero.HeroArtAvatar = "HeroArt/Wizard1Avatar";
         hero.CardTemplateArt = "CardAssets/WizardCard";
-        hero.Health = 13;
+        hero.BaseHealth = 13;
 
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/Teleport"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/IceCage"));

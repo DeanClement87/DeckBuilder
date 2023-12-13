@@ -70,6 +70,13 @@ public class HeroTargetScript : MonoBehaviour, IPointerClickHandler
                 monsterManager.monsterTurn.monster.CurrentHealth -= gameManager.Town.Fear()*2;
             }
 
+            //BLOODTHIRSTY
+            if (monsterManager.monsterTurn.monster.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Bloodthirsty))
+            {
+                if (hs.HeroModel.Health < (hs.HeroModel.BaseHealth / 2))
+                    monsterAttack = monsterAttack * 2;
+            }
+
             //MONSTER ATTACK
             hs.HeroModel.Health -= monsterAttack;
 
@@ -126,11 +133,25 @@ public class HeroTargetScript : MonoBehaviour, IPointerClickHandler
 
         if (gameManager.gameState == GameManager.GameState.MonsterTurn)
         {
-            if (monsterManager.monsterTurn.laneNumber == gameManager.HeroLanes.First(x => x.IsHeroHere(hs.HeroModel)).laneNumber)
+            //get the lane with this hero in it, then if its lane number matches the monster lane number
+            var heroLane = gameManager.HeroLanes.First(x => x.IsHeroHere(hs.HeroModel));
+            if (monsterManager.monsterTurn.laneNumber == heroLane.laneNumber)
             {
-                canBeTargeted = true;
+                if (monsterManager.monsterTurn.monster.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Sneaky))
+                {
+                    //find the hero with the lowest health in lane, if it this hero then light it up
+                    var heroWithLowestHealth = heroLane.HeroesModels.OrderBy(hero => hero.Health).FirstOrDefault();
+                    if (hs.HeroModel == heroWithLowestHealth)
+                        canBeTargeted = true;
+                    else
+                        heroImage.color = new Color(0.435f, 0.353f, 0.353f);
+                }
+                else
+                {
+                    canBeTargeted = true;
+                }
             }
-            else
+            else //this hero is not in this lane
             {
                 heroImage.color = new Color(0.435f, 0.353f, 0.353f);
             }

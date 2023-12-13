@@ -15,9 +15,9 @@ public class CleaveAttackActionExecute : IActionExecute
     {
         var activeLane = gameManager.HeroLanes.First(x => x.IsHeroHere(gameManager.ActiveHero));
 
-        foreach (var monster in activeLane.OppositeLane.MonsterModels)
+        foreach (var monster in activeLane.OppositeLane.MonsterModels.Where(x => x.CurrentHealth > 0))
         {
-            monster.CurrentHealth -= ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value);
+            monster.CurrentHealth -= ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value, monster);
         }
 
         ActionExecuteHelper.EndOfExecute();

@@ -18,3 +18,6 @@ MonoBehaviour:
   Image: MonsterArt/Ratman_03
   Health: 20
   Attack: 8
+  MonsterAttributes: 04000000
+  ParticleEnum: 0
+  ParticleBehavourEnum: 0

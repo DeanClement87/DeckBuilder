@@ -20,6 +20,7 @@ public class HeroModel : ScriptableObject
     public string HeroArtAvatar { get; set; }
     public string CardTemplateArt { get; set; }
     //STATS
+    public int BaseHealth { get; set; }
     public int Health { get; set; }
     public int Mana { get; set; }
     public bool Dead { get; set; }
@@ -162,8 +163,8 @@ public class HeroModel : ScriptableObject
                 {
                     gameManager.ChangeGameState(GameManager.GameState.GameOver);
                 }
-            }
-            break;        
+                break;
+            }    
         }
     }
 }

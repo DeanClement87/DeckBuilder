@@ -48,6 +48,21 @@ public class MonsterScript : MonoBehaviour
                 case MonsterAttributeEnum.Loot:
                     attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Loot");
                     break;
+                case MonsterAttributeEnum.Siege:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Siege");
+                    break;
+                case MonsterAttributeEnum.Ranged:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Ranged");
+                    break;
+                case MonsterAttributeEnum.Sneaky:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Sneaky");
+                    break;
+                case MonsterAttributeEnum.Bloodthirsty:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Bloodthirsty");
+                    break;
+                case MonsterAttributeEnum.Armoured:
+                    attributeSprite = Resources.Load<Sprite>("MonsterArt/MonsterAttributeArt/Armoured");
+                    break;
             }
 
         }

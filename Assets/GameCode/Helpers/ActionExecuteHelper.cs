@@ -41,22 +41,26 @@ public static class ActionExecuteHelper
         actionManager.ActionExecutor();
     }
 
-    public static int CalculateAttack(int attackValueFromCard)
+    public static int CalculateAttack(int attackValueFromCard, MonsterModel monsterToAttack)
     {
         var gameManager = GameManager.Instance;
         var actionManager = ActionManager.Instance;
 
+        //ATTACK FROM CARD
         var attackValue = attackValueFromCard;
 
-        if (gameManager.TargetedMonster != null)
-        {
-            attackValue += gameManager.TargetedMonster.Marked;
-        }
-
+        //ADD ALTERED VALUE
         attackValue += actionManager.AlterNextValue;
         actionManager.AlterNextValue = 0;
 
-        //an attack has been calculated and will happen, meaning inititive is lost.
+        //MARKED
+        attackValue += monsterToAttack.Marked;
+
+        //ARMOURED
+        if (monsterToAttack.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Armoured))
+        attackValue -= 2;
+
+        //REMOVE INITIATIVE
         gameManager.ActiveHero.Initiative = false;
 
         return attackValue;

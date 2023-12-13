@@ -53,13 +53,16 @@ public class MonsterManager : MonoBehaviour
         var laneNumber = 1;
         foreach (var monsterLane in gameManager.MonsterLanes)
         {
+            int index = 0;
             foreach (var monster in monsterLane.MonsterModels)
             {
                 var m = new MonsterTurnModel();
                 m.monster = monster;
+                m.monsterObject = monsterLane.ObjectsInLane[index];
                 m.laneNumber = laneNumber;
 
                 monsterTurnList.Add(m);
+                index++;
 
             }
             laneNumber++;
@@ -86,11 +89,37 @@ public class MonsterManager : MonoBehaviour
             monsterCounter += 1;
             MonsterExecutor();
         }
+
+        //IF MONSTER RANGED
+        if (monsterTurn.monster.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Ranged))
+        {
+            var monsterAttack = monsterTurn.monster.BaseMonster.Attack - monsterTurn.monster.Distract;
+            if (monsterAttack <= 0) monsterAttack = 0;
+
+            //SIEGE DAMAGE
+            if (monsterTurn.monster.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Siege))
+                monsterAttack = monsterAttack * 2;
+
+                var townObject = GameObject.Find($"Town");
+
+            //MONSTER RANGED ATTACK PARTICLES
+            ParticleHelper.PerformParticleSequence(monsterTurn.monster.BaseMonster.ParticleEnum, 
+                monsterTurn.monster.BaseMonster.ParticleBehavourEnum,
+                townObject,
+                monsterTurn.monsterObject);
+
+            //MONSTER ATTACK
+            gameManager.Town.Health -= monsterAttack;
+
+            monsterCounter += 1;
+            MonsterExecutor();
+        }
     }
 
     public class MonsterTurnModel
     {
         public MonsterModel monster { get; set; }
+        public GameObject monsterObject { get; set; }
         public int laneNumber { get; set; }
     }
 }

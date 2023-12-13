@@ -24,6 +24,10 @@ public class TownTargetScript : MonoBehaviour, IPointerClickHandler
             var monsterAttack = monsterManager.monsterTurn.monster.BaseMonster.Attack - monsterManager.monsterTurn.monster.Distract;
             if (monsterAttack <= 0) monsterAttack = 0;
 
+            //SIEGE DAMAGE
+            if (monsterManager.monsterTurn.monster.BaseMonster.MonsterAttributes.Contains(MonsterAttributeEnum.Siege))
+                monsterAttack = monsterAttack * 2;
+
             //MONSTER ATTACK
             gameManager.Town.Health -= monsterAttack;
 

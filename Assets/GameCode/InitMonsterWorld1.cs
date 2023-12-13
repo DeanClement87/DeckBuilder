@@ -52,31 +52,26 @@ public class InitMonsterWorld1
 
         var monsters = new List<MonsterModel>();
         monsters.Add(monster1);
-        //monsters.Add(monster2);
-        //monsters.Add(monster3);
-        //monsters.Add(monster4);
-        //monsters.Add(monster5);
-        //monsters.Add(monster6);
-
-        foreach (var monster in monsters)
-        {
-            monster.CurrentHealth = 1;
-        }
-        //monsters.Add(monster7);
-        //monsters.Add(monster8);
-        //monsters.Add(monster9);
-        //monsters.Add(monster10);
-        //monsters.Add(monster11);
-        //monsters.Add(monster12);
-        //monsters.Add(monster13);
-        //monsters.Add(monster14);
-        //monsters.Add(monster15);
-        //monsters.Add(monster16);
-        //monsters.Add(monster17);
-        //monsters.Add(monster18);
-        //monsters.Add(monster19);
-        //monsters.Add(monster20);
-        //monsters.Add(monster21);
+        monsters.Add(monster2);
+        monsters.Add(monster3);
+        monsters.Add(monster4);
+        monsters.Add(monster5);
+        monsters.Add(monster6);
+        monsters.Add(monster7);
+        monsters.Add(monster8);
+        monsters.Add(monster9);
+        monsters.Add(monster10);
+        monsters.Add(monster11);
+        monsters.Add(monster12);
+        monsters.Add(monster13);
+        monsters.Add(monster14);
+        monsters.Add(monster15);
+        monsters.Add(monster16);
+        monsters.Add(monster17);
+        monsters.Add(monster18);
+        monsters.Add(monster19);
+        monsters.Add(monster20);
+        monsters.Add(monster21);
 
         return monsters;
     }

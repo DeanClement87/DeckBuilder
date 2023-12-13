@@ -12,4 +12,6 @@ public class BaseMonsterModel : ScriptableObject
     public int Health;
     public int Attack;
     public List<MonsterAttributeEnum> MonsterAttributes;
+    public ParticleEnum ParticleEnum;
+    public ParticleBehavourEnum ParticleBehavourEnum;
 }

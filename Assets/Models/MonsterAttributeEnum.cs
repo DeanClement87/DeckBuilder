@@ -1,5 +1,10 @@
 public enum MonsterAttributeEnum
 {
     None,
-    Loot
+    Loot,
+    Siege,
+    Ranged,
+    Sneaky,
+    Bloodthirsty,
+    Armoured
 }
