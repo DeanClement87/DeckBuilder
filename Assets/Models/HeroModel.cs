@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class HeroModel : ScriptableObject
 {
     private GameManager gameManager;
+    public HeroEnum heroEnum;
     //CARDS
     public List<BaseCardModel> PossibleCards { get; set; } = new List<BaseCardModel>();
     public List<CardModel> Deck { get; set; } = new List<CardModel>();

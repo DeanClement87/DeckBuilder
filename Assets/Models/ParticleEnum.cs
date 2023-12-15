@@ -10,5 +10,6 @@ public enum ParticleEnum
     IceSpin,
     Nightmare,
     Arrow,
-    ArrowImpact
+    ArrowImpact,
+    Initiative
 }

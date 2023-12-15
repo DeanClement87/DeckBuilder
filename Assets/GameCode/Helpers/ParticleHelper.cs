@@ -60,6 +60,11 @@ public static class ParticleHelper
                 particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
                 particleObject.transform.localScale = new Vector3(150, 150, 0);
                 break;
+            case ParticleEnum.Initiative:
+                particlePrefab = Resources.Load<GameObject>("JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Magic Misc/Variants/CFXR4 Falling Stars (Circle)");
+                particleObject = GameObject.Instantiate(particlePrefab, target.transform.position, Quaternion.identity);
+                particleObject.transform.localScale = new Vector3(50, 400, 0);
+                break;
 
         }
 
@@ -68,7 +73,7 @@ public static class ParticleHelper
         return particleObject;
     }
 
-    public static bool PerformParticleSequence(ParticleEnum particleEnum, ParticleBehavourEnum particleBehavourEnum, GameObject target, GameObject start = null)
+    public static (bool delayEnd, GameObject particleObject) PerformParticleSequence(ParticleEnum particleEnum, ParticleBehavourEnum particleBehavourEnum, GameObject target, GameObject start = null)
     {
         var gameManager = GameManager.Instance;
 
@@ -82,19 +87,22 @@ public static class ParticleHelper
         switch (particleEnum)
         {
             case ParticleEnum.Slash:
-                Create(ParticleEnum.Slash, target);
+                particleObject = Create(ParticleEnum.Slash, target);
                 break;
             case ParticleEnum.IceSpin:
-                Create(ParticleEnum.IceSpin, target);
+                particleObject = Create(ParticleEnum.IceSpin, target);
                 break;
             case ParticleEnum.Backstab:
-                Create(ParticleEnum.Backstab, target);
+                particleObject = Create(ParticleEnum.Backstab, target);
                 break;
             case ParticleEnum.Nightmare:
-                Create(ParticleEnum.Nightmare, target);
+                particleObject = Create(ParticleEnum.Nightmare, target);
                 break;
             case ParticleEnum.Explosion:
-                Create(ParticleEnum.Explosion, target);
+                particleObject = Create(ParticleEnum.Explosion, target);
+                break;
+            case ParticleEnum.Initiative:
+                particleObject = Create(ParticleEnum.Initiative, target);
                 break;
             case ParticleEnum.Arrow:
                 particleObject = Create(ParticleEnum.Arrow, start);
@@ -122,7 +130,7 @@ public static class ParticleHelper
                 break;
         }
 
-        return delayEnd;
+        return (delayEnd, particleObject);
     }
 
 }

@@ -4,6 +4,7 @@ public class InitHeroesScript
 {
     public static void InitHeroKnightDeck(HeroModel hero)
     {
+        hero.heroEnum = HeroEnum.Knight;
         hero.HeroArt = "HeroArt/Knight1";
         hero.HeroBoardArt = "HeroArt/Knight1Board";
         hero.HeroArtAvatar = "HeroArt/Knight1Avatar";
@@ -44,6 +45,7 @@ public class InitHeroesScript
 
     public static void InitHeroRangerDeck(HeroModel hero)
     {
+        hero.heroEnum = HeroEnum.Ranger;
         hero.HeroArt = "HeroArt/Ranger1";
         hero.HeroBoardArt = "HeroArt/Ranger1Board";
         hero.HeroArtAvatar = "HeroArt/Ranger1Avatar";
@@ -85,6 +87,7 @@ public class InitHeroesScript
 
     public static void InitHeroWarlockDeck(HeroModel hero)
     {
+        hero.heroEnum = HeroEnum.Warlock;
         hero.HeroArt = "HeroArt/Warlock1";
         hero.HeroBoardArt = "HeroArt/Warlock1Board";
         hero.HeroArtAvatar = "HeroArt/Warlock1Avatar";
@@ -125,6 +128,7 @@ public class InitHeroesScript
 
     public static void InitHeroRogueDeck(HeroModel hero)
     {
+        hero.heroEnum = HeroEnum.Rogue;
         hero.HeroArt = "HeroArt/Rogue1";
         hero.HeroBoardArt = "HeroArt/Rogue1Board";
         hero.HeroArtAvatar = "HeroArt/Rogue1Avatar";
@@ -165,6 +169,7 @@ public class InitHeroesScript
 
     public static void InitHeroWizardDeck(HeroModel hero)
     {
+        hero.heroEnum = HeroEnum.Wizard;
         hero.HeroArt = "HeroArt/Wizard1";
         hero.HeroBoardArt = "HeroArt/Wizard1Board";
         hero.HeroArtAvatar = "HeroArt/Wizard1Avatar";
