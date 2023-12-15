@@ -93,6 +93,9 @@ public static class ParticleHelper
             case ParticleEnum.Nightmare:
                 Create(ParticleEnum.Nightmare, target);
                 break;
+            case ParticleEnum.Explosion:
+                Create(ParticleEnum.Explosion, target);
+                break;
             case ParticleEnum.Arrow:
                 particleObject = Create(ParticleEnum.Arrow, start);
                 impactParticle = ParticleEnum.ArrowImpact;

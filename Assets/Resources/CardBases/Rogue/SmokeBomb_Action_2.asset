@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92df3301dfd627545b5be81728b9b1a0, type: 3}
-  m_Name: Diversion_Action_1
+  m_Name: SmokeBomb_Action_2
   m_EditorClassIdentifier: 
-  Action: 1
-  Target: 5
-  Value: 4
+  Action: 13
+  Target: 10
+  Value: 0
   StringValue: 
-  ActionDataText: 4 Distract
+  ActionDataText: Jump
   Particle: 3
   ParticleBehavour: 1

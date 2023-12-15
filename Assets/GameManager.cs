@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
                     Heroes.Add(CreateHero(HeroEnum.Knight, 1));
                     Heroes.Add(CreateHero(HeroEnum.Ranger, 2));
                     Heroes.Add(CreateHero(HeroEnum.Wizard, 3));
-                    Heroes.Add(CreateHero(HeroEnum.Warlock, 4));
+                    Heroes.Add(CreateHero(HeroEnum.Rogue, 4));
                 }
 
                 //set the avatars when selecting a card

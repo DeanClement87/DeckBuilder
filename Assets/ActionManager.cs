@@ -69,6 +69,13 @@ public class ActionManager : MonoBehaviour
             return;
         }
 
+        if (ActiveAction.Target == ActionTargetEnum.MonsterLane)
+        {
+            var actionExecute = ActionExecuteFactory.GetActionExecute(ActiveAction.Action);
+            actionExecute.Execute();
+            return;
+        }
+
         if (ActiveAction.Target == ActionTargetEnum.AutoSkipAction)
         {
             var actionExecute = ActionExecuteFactory.GetActionExecute(ActiveAction.Action);

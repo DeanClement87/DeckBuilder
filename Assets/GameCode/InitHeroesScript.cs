@@ -135,6 +135,7 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/NowYouSeeMe"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/DualWield"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/Flanked"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Rogue/SmokeBomb"));
 
         var card1 = new CardModel(hero.PossibleCards[0]); //Rogue_Backstab
         var card2 = new CardModel(hero.PossibleCards[0]); //Rogue_Backstab
