@@ -14,7 +14,7 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/Defend"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/StrikeBack"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/Rally"));
-
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Knight/ShieldsUp"));
 
         var card1 = new CardModel(hero.PossibleCards[0]); //Knight_Retaliate
         var card2 = new CardModel(hero.PossibleCards[0]); //Knight_Retaliate
@@ -65,7 +65,7 @@ public class InitHeroesScript
         var card6 = new CardModel(hero.PossibleCards[1]); //Ranger_Diversion
         var card7 = new CardModel(hero.PossibleCards[1]); //Ranger_Diversion
         var card8 = new CardModel(hero.PossibleCards[1]); //Ranger_Diversion
-        var card9 = new CardModel(hero.PossibleCards[2]); //Ranger_FromBehind
+        var card9 = new CardModel(hero.PossibleCards[2]); //Ranger_EnemySpotted
         var card10 = new CardModel(hero.PossibleCards[3]); //Ranger_Snipe
 
         hero.Deck.Add(card1);
@@ -175,16 +175,16 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/ManaInABottle"));
 
 
-        var card1 = new CardModel(hero.PossibleCards[0]);
-        var card2 = new CardModel(hero.PossibleCards[0]);
-        var card3 = new CardModel(hero.PossibleCards[0]);
-        var card4 = new CardModel(hero.PossibleCards[0]);
-        var card5 = new CardModel(hero.PossibleCards[1]);
-        var card6 = new CardModel(hero.PossibleCards[1]);
-        var card7 = new CardModel(hero.PossibleCards[2]);
-        var card8 = new CardModel(hero.PossibleCards[2]);
-        var card9 = new CardModel(hero.PossibleCards[2]);
-        var card10 = new CardModel(hero.PossibleCards[3]);
+        var card1 = new CardModel(hero.PossibleCards[0]); //Wizard_Teleport
+        var card2 = new CardModel(hero.PossibleCards[0]); //Wizard_Teleport
+        var card3 = new CardModel(hero.PossibleCards[0]); //Wizard_Teleport
+        var card4 = new CardModel(hero.PossibleCards[0]); //Wizard_Teleport
+        var card5 = new CardModel(hero.PossibleCards[1]); //Wizard_IceCage
+        var card6 = new CardModel(hero.PossibleCards[1]); //Wizard_IceCage
+        var card7 = new CardModel(hero.PossibleCards[1]); //Wizard_IceCage
+        var card8 = new CardModel(hero.PossibleCards[1]); //Wizard_IceCage
+        var card9 = new CardModel(hero.PossibleCards[2]); //Wizard_Fireball
+        var card10 = new CardModel(hero.PossibleCards[3]);//Wizard_ManaInABottle
 
         hero.Deck.Add(card1);
         hero.Deck.Add(card2);

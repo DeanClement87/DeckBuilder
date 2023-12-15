@@ -14,6 +14,8 @@ public static class ActionExecuteFactory
                 return new DistractActionExecute();
             case ActionEnum.Jump:
                 return new JumpActionExecute();
+            case ActionEnum.DiscardRandomCard:
+                return new DiscardRandomCardActionExecute();
             case ActionEnum.Mark:
                 return new MarkActionExecute();
             case ActionEnum.Frozen:
@@ -34,6 +36,7 @@ public static class ActionExecuteFactory
                 return new GiveCardDrawToAlliesActionExecute();
             case ActionEnum.BeAfraid:
                 return new BeAfraidActionExecute();
+
 
 
             //AUTO CHECKERS

@@ -62,19 +62,34 @@ public class HeroModel : ScriptableObject
         Hand = new List<GameObject>();
     }
 
+    public void DiscardRandomCard()
+    {
+        int randomNumber = UnityEngine.Random.Range(0, Hand.Count());
+
+        DiscardCard(Hand[randomNumber]);
+    }
+
+    public void DiscardCard(GameObject cardToDiscard)
+    {
+        Hand.Remove(cardToDiscard);
+
+        var c = cardToDiscard.GetComponent<CardScript>();
+        DiscardPile.Add(c.GetCardModel());
+
+        Destroy(cardToDiscard);
+
+        OrganiseHand();
+    }
+
     public void ResetHeroesCards()
     {
         foreach (var card in Hand)
         {
-            CardScript c = card.GetComponent<CardScript>();
-            DiscardPile.Add(c.GetCardModel());
-
-            Destroy(card);
+            DiscardCard(card);
         }
 
         DrawPile.AddRange(Deck);
         DiscardPile = new List<CardModel>();
-        Hand = new List<GameObject>();
     }
 
     public void Shuffle()

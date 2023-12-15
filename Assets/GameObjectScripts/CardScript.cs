@@ -51,11 +51,7 @@ public class CardScript : MonoBehaviour
         gameManager.ActiveCard = cardModel;
         gameManager.ChangeGameState(GameManager.GameState.CardAction);
 
-
         //remove card.
-        gameManager.ActiveHero.DiscardPile.Add(cardModel);
-        gameManager.ActiveHero.Hand.Remove(gameObject);
-        gameManager.ActiveHero.OrganiseHand();
-        Destroy(gameObject);
+        gameManager.ActiveHero.DiscardCard(gameObject);
     }
 }

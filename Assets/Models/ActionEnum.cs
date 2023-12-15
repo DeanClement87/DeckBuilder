@@ -4,7 +4,7 @@ public enum ActionEnum
     Distract,
     AddBlock,
     AddThorns,
-    AttackByThornsStack,  //NOT IN USE
+    DiscardRandomCard,
     GiveManaToAllies,
     GiveCardDrawToAllies,
     Mark,
@@ -20,4 +20,5 @@ public enum ActionEnum
     Stun,
     Frozen,
     AlterNextActionValue
+
 }

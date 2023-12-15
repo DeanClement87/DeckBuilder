@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   CardName: Fireball
-  Description: 20 Damage
+  Description: 18 Damage
   Image: CardArt/fireball
   ManaCost: 3
   Actions:

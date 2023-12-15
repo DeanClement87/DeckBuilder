@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88a8e12d2b5724644a2d4bc155bcf84f, type: 3}
-  m_Name: Protect
+  m_Name: ShieldsUp
   m_EditorClassIdentifier: 
-  Id: 5
-  CardName: Protect
-  Description: 'SUPPORT: 6 Defence'
-  Image: CardArt/protect
+  Id: 0
+  CardName: Shields Up
+  Description: Gain 8 Block. Then Discard a Random Card
+  Image: CardArt/shields_up
   ManaCost: 1
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 9deceeabf87fc5e4fa837801239bd2e9, type: 2}
+  - {fileID: 11400000, guid: eb89ebc816eb9644d9571a2330e5af07, type: 2}
+  CardConditionEnums: 
