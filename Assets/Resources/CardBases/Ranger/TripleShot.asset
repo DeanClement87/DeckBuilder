@@ -18,7 +18,10 @@ MonoBehaviour:
   Image: CardArt/triple_shot
   ManaCost: 2
   Actions:
+  - {fileID: 11400000, guid: 11dfd99926b73c44eb9fe558ee230d5f, type: 2}
   - {fileID: 11400000, guid: 4e974f49049c7634f9d780613c3f48b3, type: 2}
+  - {fileID: 11400000, guid: 73a261059877d26499872bad821f5fec, type: 2}
   - {fileID: 11400000, guid: 11512b52164741a4cbc08be7b025881c, type: 2}
+  - {fileID: 11400000, guid: f5d0477254ebe2146bd9d00907a3d4fa, type: 2}
   - {fileID: 11400000, guid: fa2bbffe593b70f44ba725cef839b420, type: 2}
   CardConditionEnums: 

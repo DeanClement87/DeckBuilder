@@ -73,6 +73,11 @@ public class InitMonsterWorld1
         monsters.Add(monster20);
         monsters.Add(monster21);
 
+        foreach (var monster in monsters)
+        {
+            monster.CurrentHealth = 1;
+        }
+
         return monsters;
     }
 }

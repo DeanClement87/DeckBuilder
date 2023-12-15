@@ -15,4 +15,7 @@ MonoBehaviour:
   Action: 14
   Target: 11
   Value: 1
+  StringValue: 
   ActionDataText: 
+  Particle: 0
+  ParticleBehavour: 0

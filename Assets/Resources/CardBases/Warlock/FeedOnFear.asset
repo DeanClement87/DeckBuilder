@@ -19,4 +19,4 @@ MonoBehaviour:
   ManaCost: 1
   Actions:
   - {fileID: 11400000, guid: 86fa9dd82852a5147b8c940f1e49c808, type: 2}
-  CardConditionEnums: 
+  CardConditionEnums: 01000000

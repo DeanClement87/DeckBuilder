@@ -20,7 +20,7 @@ public class CleaveAttackActionExecute : IActionExecute
         foreach (var monster in activeLane.OppositeLane.MonsterModels.Where(x => x.CurrentHealth > 0))
         {
             //Check injured condition
-            if (condition == "injured" && monster.CurrentHealth! < monster.BaseMonster.Health) continue;
+            if (condition == "injured" && monster.CurrentHealth == monster.BaseMonster.Health) continue;
 
             monster.CurrentHealth -= ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value, monster);
         }
