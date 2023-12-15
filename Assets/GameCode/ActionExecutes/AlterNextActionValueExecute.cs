@@ -23,7 +23,7 @@ public class AlterNextActionValueExecute : IActionExecute
                 break;
             case "backstab":
                 if (gameManager.ActiveHero.Initiative)
-                    actionManager.AlterNextValue = 3;
+                    actionManager.AlterNextValue = actionManager.ActiveAction.Value;
                 break;
         }
 

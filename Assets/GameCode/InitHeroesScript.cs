@@ -174,6 +174,7 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/IceCage"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/Fireball"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/ManaInABottle"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Wizard/Frostbolt"));
 
 
         var card1 = new CardModel(hero.PossibleCards[0]); //Wizard_Teleport

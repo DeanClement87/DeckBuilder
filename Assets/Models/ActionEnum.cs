@@ -12,7 +12,7 @@ public enum ActionEnum
     AddTownMood,
     BeAfraid,
     CleaveAttack,
-    Backstab, //NOT IN USE
+    Frostbolt,
     Jump,
     SkipIfNoMonsterInLane,
     SkipIfNoKill,

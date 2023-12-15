@@ -38,7 +38,8 @@ public static class ActionExecuteFactory
                 return new BeAfraidActionExecute();
             case ActionEnum.FeedOnFear:
                 return new CleaveAttackActionExecute("injured");
-
+            case ActionEnum.Frostbolt:
+                return new FrostboltActionExecute();
 
 
             //AUTO CHECKERS
