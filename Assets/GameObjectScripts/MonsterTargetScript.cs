@@ -52,7 +52,7 @@ public class MonsterTargetScript : MonoBehaviour, IPointerClickHandler
                 monsterImage.color = Color.white;
                 return;
             case ActionTargetEnum.MonsterThisLane:
-                if (heroLane.OppositeLane.MonsterModels.Contains(ms.monsterModel))
+                if (heroLane.OppositeLane.IsMonsterHere(ms.monsterModel))
                 {
                     canBeTargeted = true;
                     monsterImage.color = Color.white;
@@ -61,11 +61,21 @@ public class MonsterTargetScript : MonoBehaviour, IPointerClickHandler
                 break;
             case ActionTargetEnum.MonsterOutsideLane:
                 //if the monster is in the opposite lane to our hero, then do nothing
-                if (heroLane.OppositeLane.MonsterModels.Contains(ms.monsterModel)) break;
+                if (heroLane.OppositeLane.IsMonsterHere(ms.monsterModel)) break;
 
                 canBeTargeted = true;
                 monsterImage.color = Color.white;
                 return;
+
+            case ActionTargetEnum.MonsterInGivenLane:
+                var lane = int.Parse(actionManager.ActiveAction.StringValue);
+                if (gameManager.MonsterLanes[lane - 1].IsMonsterHere(ms.monsterModel))
+                {
+                    canBeTargeted = true;
+                    monsterImage.color = Color.white;
+                    return;
+                }
+                break;
         }
 
         //if cannot target by the end, then it is not a possible target

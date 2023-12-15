@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LaneModel
@@ -20,5 +21,10 @@ public class LaneModel
     public bool IsHeroHere(HeroModel heroModel)
     {
         return HeroesModels.Contains(heroModel);
+    }
+
+    public bool IsMonsterHere(MonsterModel monsterModel)
+    {
+        return MonsterModels.Contains(monsterModel);
     }
 }

@@ -11,5 +11,6 @@ public enum ActionTargetEnum
     MonsterLane,
     Auto,
     OutsideHeroLane,
-    AutoSkipAction
+    AutoSkipAction,
+    MonsterInGivenLane
 }

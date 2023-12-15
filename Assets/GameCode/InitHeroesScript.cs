@@ -54,7 +54,7 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/Diversion"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/EnemySpotted"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/Snipe"));
-        //hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/Flare"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Ranger/TripleShot"));
 
 
         var card1 = new CardModel(hero.PossibleCards[0]); //Ranger_Shoot
