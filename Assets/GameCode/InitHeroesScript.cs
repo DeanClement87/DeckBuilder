@@ -95,6 +95,7 @@ public class InitHeroesScript
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/Nightmare"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/BeAfraid"));
         hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/SendThemToHell"));
+        hero.PossibleCards.Add(Resources.Load<BaseCardModel>("CardBases/Warlock/FeedOnFear"));
 
         var card1 = new CardModel(hero.PossibleCards[0]); //Warlock_ChaosBolt
         var card2 = new CardModel(hero.PossibleCards[0]); //Warlock_ChaosBolt

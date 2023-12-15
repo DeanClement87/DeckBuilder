@@ -66,12 +66,14 @@ public class ActionManager : MonoBehaviour
         {
             var actionExecute = ActionExecuteFactory.GetActionExecute(ActiveAction.Action);
             actionExecute.Execute();
+            return;
         }
 
         if (ActiveAction.Target == ActionTargetEnum.AutoSkipAction)
         {
             var actionExecute = ActionExecuteFactory.GetActionExecute(ActiveAction.Action);
             actionExecute.Execute();
+            return;
         }
     }
 }

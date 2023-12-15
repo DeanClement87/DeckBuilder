@@ -36,6 +36,8 @@ public static class ActionExecuteFactory
                 return new GiveCardDrawToAlliesActionExecute();
             case ActionEnum.BeAfraid:
                 return new BeAfraidActionExecute();
+            case ActionEnum.FeedOnFear:
+                return new CleaveAttackActionExecute("injured");
 
 
 

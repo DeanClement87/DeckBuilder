@@ -19,6 +19,7 @@ public enum ActionEnum
     GiveManaToLane,
     Stun,
     Frozen,
-    AlterNextActionValue
+    AlterNextActionValue,
+    FeedOnFear
 
 }

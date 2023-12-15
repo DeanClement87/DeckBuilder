@@ -4,11 +4,13 @@ public class CleaveAttackActionExecute : IActionExecute
 {
     private GameManager gameManager;
     private ActionManager actionManager;
+    private string condition;
 
-    public CleaveAttackActionExecute()
+    public CleaveAttackActionExecute(string condition = null)
     {
         gameManager = GameManager.Instance;
         actionManager = ActionManager.Instance;
+        this.condition = condition; 
     }
 
     public void Execute()
@@ -17,6 +19,9 @@ public class CleaveAttackActionExecute : IActionExecute
 
         foreach (var monster in activeLane.OppositeLane.MonsterModels.Where(x => x.CurrentHealth > 0))
         {
+            //Check injured condition
+            if (condition == "injured" && monster.CurrentHealth! < monster.BaseMonster.Health) continue;
+
             monster.CurrentHealth -= ActionExecuteHelper.CalculateAttack(actionManager.ActiveAction.Value, monster);
         }
 
